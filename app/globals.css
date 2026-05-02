@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Urbanist:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&display=swap');
-
 @import "tailwindcss";
 
 @theme {
@@ -18,9 +16,9 @@
   --color-clay-pastel: #F2EBE4;
   --color-gold-pastel: #F5F0E1;
 
-  --font-display: "Cormorant Garamond", serif;
-  --font-sans: "Urbanist", sans-serif;
-  --font-signature: "Pinyon Script", cursive;
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-signature: var(--font-signature);
 
   --tracking-wider: 0.15em;
   --tracking-widest: 0.3em;
@@ -37,39 +35,26 @@ body {
   font-family: var(--font-sans);
   font-weight: 300;
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Scrollbar ──────────────────────────── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: var(--color-cream); }
-::-webkit-scrollbar-thumb { background: var(--color-stone); border-radius: 2px; }
-
-/* Hide scrollbar utility */
-.scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
-.scrollbar-none::-webkit-scrollbar { display: none; }
-
-/* ── Selection ──────────────────────────── */
-::selection { background: var(--color-terracotta); color: white; }
-
-/* ── Typography helpers ─────────────────── */
-.font-display { font-family: var(--font-display) !important; }
-.font-signature { font-family: var(--font-signature) !important; }
-
-/* ── Focus visible ──────────────────────── */
-:focus-visible {
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 2px;
+/* ── Custom Utilities ──────────────────── */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
-/* ── Smooth image rendering ─────────────── */
-img { max-width: 100%; height: auto; display: block; }
+.text-balance {
+  text-wrap: balance;
+}
 
-/* ── Line clamp ─────────────────────────── */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+@layer utilities {
+  .bg-grid-white {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
 }

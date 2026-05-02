@@ -5,8 +5,25 @@ import CartDrawer from "@/components/CartDrawer";
 import SearchOverlay from "@/components/SearchOverlay";
 import Toast from "@/components/Toast";
 import BackToTop from "@/components/BackToTop";
-
 import MobileNav from "@/components/MobileNav";
+import { Marcellus, Urbanist, Pinyon_Script } from "next/font/google";
+
+const marcellus = Marcellus({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+});
+
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const pinyon = Pinyon_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-signature",
+});
 
 export const metadata: Metadata = {
   title: "LivingSpace — Premium Living Space Interiors",
@@ -15,15 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${marcellus.variable} ${urbanist.variable} ${pinyon.variable}`}>
       <body className="antialiased">
         <CartProvider>
           {children}
