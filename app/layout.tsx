@@ -6,11 +6,10 @@ import SearchOverlay from "@/components/SearchOverlay";
 import Toast from "@/components/Toast";
 import BackToTop from "@/components/BackToTop";
 import MobileNav from "@/components/MobileNav";
-import { Marcellus, Urbanist, Pinyon_Script } from "next/font/google";
+import { Bodoni_Moda, Urbanist, Pinyon_Script } from "next/font/google";
 
-const marcellus = Marcellus({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: "400",
   variable: "--font-display",
 });
 
@@ -26,13 +25,13 @@ const pinyon = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
-  title: "LivingSpace — Premium Living Space Interiors",
+  title: "LivingSpace — Ultra Luxury Living Spaces",
   description: "Curated furniture and décor for spaces that feel like you. Crafted with intention, designed for life.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${marcellus.variable} ${urbanist.variable} ${pinyon.variable}`}>
+    <html lang="en" className={`${bodoni.variable} ${urbanist.variable} ${pinyon.variable}`}>
       <body className="antialiased">
         <CartProvider>
           {children}
