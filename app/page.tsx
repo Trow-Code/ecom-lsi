@@ -10,6 +10,7 @@ import UGCStrip from "@/components/UGCStrip";
 import ConsultationCTA from "@/components/ConsultationCTA";
 import OfferBanners from "@/components/OfferBanners";
 import FullWidthBanner from "@/components/FullWidthBanner";
+import BestSellers from "@/components/BestSellers";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,11 +19,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ShopByRoom />
+      <BestSellers />
       <ShopByCategory />
+      <FullWidthBanner />
       <Collections />
       <FeaturedProducts />
       <OfferBanners />
-      <FullWidthBanner />
       <EditorialBanner />
       <UGCStrip />
       <ConsultationCTA />

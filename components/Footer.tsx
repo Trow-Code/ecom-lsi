@@ -1,6 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import TrustBadges from "./TrustBadges";
 
 const FOOTER_LINKS = {
   "About Us": ["Why Us", "Testimonials", "Awards & Recognition", "Care & Maintenance", "Blog", "Contact Us"],
@@ -20,6 +21,9 @@ export default function Footer() {
 
   return (
     <footer className="bg-warm-white border-t border-sand">
+      {/* Trust assurances badges */}
+      <TrustBadges />
+
       {/* Main footer */}
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-24 lg:pb-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 sm:gap-10 mb-12 sm:mb-16">

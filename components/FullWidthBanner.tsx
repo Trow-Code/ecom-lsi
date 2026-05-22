@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default function FullWidthBanner() {
   return (
-    <section className="bg-warm-white py-8 sm:py-12 border-t border-sand/20">
+    <section className="bg-white py-8 sm:py-12">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
-        <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[500px] overflow-hidden border border-sand/40">
+        <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[500px] overflow-hidden">
           
           {/* Background Image */}
           <Image
@@ -18,7 +18,7 @@ export default function FullWidthBanner() {
           />
 
           {/* Subtle blend gradient to enhance text readability on the left, restricted to the text area */}
-          <div className="absolute inset-0 bg-gradient-to-r from-warm-white/95 via-warm-white/40 to-transparent w-full md:w-[45%]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/40 to-transparent w-full md:w-[45%]" />
 
           {/* Content overlay inside contained frame */}
           <div className="absolute inset-0 p-8 sm:p-12 lg:p-16 flex items-center justify-start">
