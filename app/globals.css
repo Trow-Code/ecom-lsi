@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Forum&family=Pinyon+Script&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Pinyon+Script&family=Urbanist:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -20,6 +20,7 @@
   --font-display: "Forum", serif;
   --font-sans: "Urbanist", sans-serif;
   --font-signature: "Pinyon Script", cursive;
+  --font-serif: "Playfair Display", serif;
 
   --tracking-wider: 0.15em;
   --tracking-widest: 0.3em;

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Plus, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const PRODUCTS = [
   {
@@ -14,7 +14,9 @@ const PRODUCTS = [
     hotspots: [
       { x: "66%", y: "38%", label: "Sovereign Bouclé Sofa" },
       { x: "42%", y: "48%", label: "Travertine Coffee Table" }
-    ]
+    ],
+    specHeader: "LIVING ROOM DESIGN",
+    specItems: ["Sovereign Bouclé Sofa", "Travertine Coffee Table"]
   },
   {
     id: 2,
@@ -25,18 +27,22 @@ const PRODUCTS = [
     hotspots: [
       { x: "54%", y: "66%", label: "Sanctuary Dining Table" },
       { x: "25%", y: "72%", label: "Arona Rattan Chair" }
-    ]
+    ],
+    specHeader: "DINING ROOM DESIGN",
+    specItems: ["Sanctuary Dining Table", "Arona Rattan Chairs"]
   },
   {
     id: 3,
     name: "The Archive Desk System",
     category: "Study / Edition 01",
     price: "₹68,000",
-    image: "/hero_luxury_study.png",
+    image: "/hero_study_moody.png",
     hotspots: [
-      { x: "45%", y: "50%", label: "Atelier Console Desk" },
-      { x: "41%", y: "32%", label: "Brass Task Lamp" }
-    ]
+      { x: "54%", y: "62%", label: "Atelier Console Desk" },
+      { x: "50%", y: "46%", label: "Brass Task Lamp" }
+    ],
+    specHeader: "STUDY ROOM DESIGN",
+    specItems: ["Atelier Console Desk", "Brass Task Lamp"]
   },
 ];
 
@@ -51,7 +57,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-video max-h-[calc(100vh-140px)] bg-ink overflow-hidden flex flex-col">
+    <section className="relative w-full h-[620px] sm:h-[660px] lg:h-[680px] bg-ink overflow-hidden flex flex-col">
 
       {/* Cinematic Image Frame */}
       <AnimatePresence>
@@ -71,14 +77,15 @@ export default function Hero() {
             priority
             sizes="100vw"
           />
-          {/* Faint, natural vignette gradients for text pop */}
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/55 via-ink/15 to-transparent z-1" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/10 to-transparent z-1" />
+          {/* Targeted gradients for high legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent z-1 pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/80 via-black/25 to-transparent z-1 pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-black/40 to-transparent z-1 pointer-events-none" />
         </motion.div>
       </AnimatePresence>
 
-      {/* "Poster" Layout Content */}
-      <div className="relative z-10 flex-1 w-full flex items-end sm:items-center justify-start p-6 pb-12 sm:p-12 lg:p-20 pointer-events-none">
+      {/* "Poster" Split Layout Content */}
+      <div className="relative z-10 flex-1 w-full flex flex-col justify-end md:flex-row md:items-end md:justify-between px-6 sm:px-12 lg:px-20 xl:px-24 pb-12 sm:pb-16 lg:pb-20 pt-20 pointer-events-none">
 
         {/* Center: Interactive Hotspots (Pointer Events On) */}
         <div className="absolute inset-0 pointer-events-none">
@@ -94,9 +101,19 @@ export default function Hero() {
                 className="absolute pointer-events-auto group"
               >
                 <div className="relative flex items-center justify-center">
-                  <div className="absolute w-8 h-8 bg-white/20 rounded-full animate-ping" />
-                  <button className="relative w-6 h-6 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-ink hover:bg-[#C49A5D] hover:text-white transition-all duration-500 shadow-xl">
-                    <Plus size={10} />
+                  {/* Thin outer ring */}
+                  <div className="absolute w-6 h-6 border border-white/30 rounded-full transition-all duration-500 group-hover:scale-125 group-hover:border-white/50" />
+                  {/* Floating minimal plus icon */}
+                  <button className="relative w-4 h-4 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <svg 
+                      className="w-2.5 h-2.5 text-white/90 transition-colors duration-300 group-hover:text-[#C49A5D]" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
                   </button>
                   <div className="absolute left-full ml-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 whitespace-nowrap z-30">
                     <div className="bg-white/95 backdrop-blur-xl px-4 py-2 rounded-sm border-l-2 border-[#C49A5D] shadow-md">
@@ -109,50 +126,25 @@ export default function Hero() {
           </AnimatePresence>
         </div>
 
-        {/* Left Block: Editorial Typography */}
-        <div className="flex flex-col items-start pointer-events-auto max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl pb-4 sm:pb-0">
-          <h1 className="font-display text-[45px] sm:text-[72px] lg:text-[92px] font-normal text-white leading-[0.9] tracking-tight mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)]">
-            Bring Trend <br />
-            <span className="relative inline-block font-signature text-[#C49A5D] text-[65px] sm:text-[95px] lg:text-[120px] font-normal leading-none py-1 select-none pr-5 sm:pr-8">
-              Culture
-              {/* Hand-drawn SVG underline */}
-              <svg
-                className="absolute -bottom-1.5 left-0 w-[110%] h-3 sm:h-5 lg:h-6 text-[#C49A5D]"
-                viewBox="0 0 200 24"
-                preserveAspectRatio="none"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <motion.path
-                  d="M10 12 C 50 18, 120 18, 180 8 C 185 8, 192 6, 190 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.8 }}
-                />
-                <motion.path
-                  d="M175 4 C 180 6, 186 7, 190 6 C 184 8, 178 11, 172 13"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 2.0 }}
-                />
-              </svg>
-            </span>
-            Home
+        {/* Left Block: Editorial Typography (Bottom-Left) */}
+        <div className="flex flex-col items-start pointer-events-auto max-w-xl md:max-w-md lg:max-w-lg xl:max-w-2xl z-10 mb-8 md:mb-0">
+          <h1 className="font-display text-[38px] sm:text-[60px] lg:text-[76px] font-light text-white leading-[0.95] sm:leading-[1] lg:leading-[0.95] tracking-tight mb-4">
+            Bring Trend &amp; <br />
+            <span className="font-serif italic text-[#C49A5D] tracking-normal font-normal">Culture</span> Home
           </h1>
 
-          <p className="text-xs sm:text-sm text-white/80 font-light leading-relaxed max-w-md mb-8 tracking-wide">
+          <p className="text-xs sm:text-sm text-white/85 font-light leading-relaxed max-w-md tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]">
             Discover stylish, modern furniture crafted to elevate your living space with comfort and class.
           </p>
+        </div>
 
+        {/* Right Block: Shop Now CTA, Slide Specs & Indicator (Bottom-Right) */}
+        <div className="flex flex-col items-start md:items-end gap-6 sm:gap-8 pointer-events-auto z-10">
+          
+          {/* Shop Now CTA Button */}
           <a
             href="#collections"
-            className="group inline-flex items-center gap-3 text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-white font-semibold mt-2"
+            className="group inline-flex items-center gap-3 text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-white font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
           >
             <span className="relative pb-1">
               Shop Now
@@ -161,10 +153,25 @@ export default function Hero() {
             </span>
             <ArrowRight size={12} className="text-[#C49A5D] group-hover:translate-x-1.5 transition-transform duration-300" />
           </a>
-        </div>
 
-        {/* Right Block: Slide Indicator */}
-        <div className="absolute bottom-10 sm:bottom-12 lg:bottom-20 right-6 sm:right-12 lg:right-20 flex flex-col items-start lg:items-end gap-6 pointer-events-auto">
+          {/* Featured In Scene Room Specs */}
+          <motion.div
+            key={`specs-${current}`}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="hidden sm:flex flex-col items-start md:items-end font-sans text-[11px] text-white/70 font-light"
+          >
+            <span className="text-[#C49A5D] font-semibold text-[9px] tracking-[0.2em] uppercase mb-1">
+              Featured in scene
+            </span>
+            <span className="text-left md:text-right leading-relaxed max-w-[220px]">
+              {PRODUCTS[current].specItems.join(" & ")}
+            </span>
+          </motion.div>
+
+          {/* Slide Indicator Dots */}
           <div className="flex gap-3">
             {PRODUCTS.map((_, i) => (
               <button

@@ -52,8 +52,8 @@ export default function BestSellers() {
   };
 
   return (
-    <section className="bg-[#FAF8F5] py-20 sm:py-24 border-t border-sand/35">
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="best-sellers" className="bg-[#FAF8F5] py-20 sm:py-24 border-t border-sand/35">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
@@ -70,8 +70,8 @@ export default function BestSellers() {
           </p>
         </div>
 
-        {/* 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+        {/* 4-Column Grid (2 Columns on Mobile) */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-8 gap-y-10 sm:gap-y-16">
           {BEST_SELLERS.map((item) => {
             const isWished = !!wishlist[item.id];
             const discount = Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100);
@@ -79,35 +79,35 @@ export default function BestSellers() {
             return (
               <div key={item.id} className="group flex flex-col h-full">
                 {/* Image Wrapper */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-sand/10 border border-sand/20 mb-6 group/img">
+                <div className="relative aspect-[3/4] overflow-hidden bg-sand/10 border border-sand/20 mb-4 sm:mb-6 group/img">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
                     className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                   />
 
                   {/* Discount Badge */}
-                  <span className="absolute top-4 left-4 bg-terracotta text-white text-[8px] tracking-wider uppercase px-2 py-1 font-semibold z-10 border border-white/10">
+                  <span className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-terracotta text-white text-[8px] tracking-wider uppercase px-1.5 py-0.5 sm:px-2 sm:py-1 font-semibold z-10 border border-white/10">
                     -{discount}%
                   </span>
 
                   {/* Wishlist Button */}
                   <button
                     onClick={() => toggleWish(item.id)}
-                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:bg-white transition-all duration-300 z-10"
+                    className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:bg-white transition-all duration-300 z-10"
                     aria-label="Add to wishlist"
                   >
                     <Heart
-                      size={13}
+                      size={11}
                       className={isWished ? "fill-terracotta text-terracotta" : "text-ink/60"}
                       strokeWidth={1.5}
                     />
                   </button>
 
-                  {/* Quick Add Overlay Button on Hover */}
-                  <div className="absolute inset-x-4 bottom-4 flex justify-center z-10">
+                  {/* Quick Add Overlay Button on Hover (Desktop only) */}
+                  <div className="absolute inset-x-4 bottom-4 hidden lg:flex justify-center z-10">
                     <button
                       onClick={() => addItem({ id: item.id, name: item.name, price: item.price, image: item.image })}
                       className="w-full py-3 bg-white/90 backdrop-blur-md border border-sand/30 text-ink text-[10px] tracking-[0.25em] uppercase font-bold translate-y-4 opacity-0 group-hover/img:translate-y-0 group-hover/img:opacity-100 transition-all duration-500 ease-out flex items-center justify-center gap-2 hover:bg-ink hover:text-white"
@@ -118,19 +118,19 @@ export default function BestSellers() {
                 </div>
 
                 {/* Product Metadata */}
-                <div className="flex-1 flex flex-col justify-between space-y-2">
+                <div className="flex-1 flex flex-col justify-between space-y-1.5">
                   <div>
-                    <p className="text-[9px] tracking-[0.15em] uppercase text-stone-500 mb-1">
+                    <p className="text-[8px] sm:text-[9px] tracking-[0.15em] uppercase text-stone-500 mb-0.5 sm:mb-1">
                       {item.category}
                     </p>
-                    <h3 className="font-display text-lg font-light text-ink tracking-wide group-hover:text-[#C49A5D] transition-colors duration-300">
+                    <h3 className="font-display text-sm sm:text-lg font-light text-ink tracking-wide group-hover:text-[#C49A5D] transition-colors duration-300 leading-tight">
                       {item.name}
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-3 pt-1">
-                    <span className="text-base font-semibold text-ink">{fmt(item.price)}</span>
-                    <span className="text-xs text-stone-400 line-through font-light">
+                  <div className="flex items-center gap-2 sm:gap-3 pt-0.5 sm:pt-1">
+                    <span className="text-sm sm:text-base font-semibold text-ink">{fmt(item.price)}</span>
+                    <span className="text-[10px] sm:text-xs text-stone-400 line-through font-light">
                       {fmt(item.originalPrice)}
                     </span>
                   </div>

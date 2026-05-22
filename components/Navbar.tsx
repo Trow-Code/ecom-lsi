@@ -5,9 +5,28 @@ import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 
 const NAV = [
-  { label: "New", href: "#" },
+  { label: "Rooms", href: "#rooms" },
+  { label: "Best Sellers", href: "#best-sellers" },
   {
-    label: "Collection",
+    label: "Categories",
+    href: "#categories",
+    mega: [
+      {
+        title: "Seating",
+        links: ["Sofas & Sectionals", "Chairs & Lounges", "Benches", "Stools", "Ottomans"]
+      },
+      {
+        title: "Dining & Living",
+        links: ["Dining Tables", "Dining Chairs", "Coffee Tables", "Side Tables", "Consoles"]
+      },
+      {
+        title: "Bedroom & Storage",
+        links: ["Beds", "Nightstands", "Wardrobes", "Dressers", "Bookshelves"]
+      }
+    ]
+  },
+  {
+    label: "Collections",
     href: "#collections",
     mega: [
       {
@@ -24,37 +43,16 @@ const NAV = [
       }
     ]
   },
-  { label: "Best Sellers", href: "#" },
-  { label: "Workspace", href: "#" },
-  { label: "Trends", href: "#" },
-  {
-    label: "Furniture",
-    href: "#",
-    mega: [
-      {
-        title: "Seating",
-        links: ["Sofas & Sectionals", "Chairs & Lounges", "Benches", "Stools", "Ottomans"]
-      },
-      {
-        title: "Dining & Living",
-        links: ["Dining Tables", "Dining Chairs", "Coffee Tables", "Side Tables", "Consoles"]
-      },
-      {
-        title: "Bedroom & Storage",
-        links: ["Beds", "Nightstands", "Wardrobes", "Dressers", "Bookshelves"]
-      }
-    ]
-  },
-  { label: "Concepts", href: "#" },
-  { label: "Atelier", href: "#consultation" },
-  { label: "Journal", href: "#" },
-  { label: "Offers", href: "#" },
+  { label: "Featured", href: "#featured" },
+  { label: "Offers", href: "#offers" },
+  { label: "Consultation", href: "#consultation" }
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
   const { count, setCartOpen, setSearchOpen } = useCart();
 
   useEffect(() => {
@@ -69,26 +67,26 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // Determine colors based on scroll state - always solid for maximum readability
-  const isTransparent = false;
-  const textColor = "text-ink";
-  const subTextColor = "text-charcoal";
-  const iconColor = "text-charcoal";
+  // Determine colors based on scroll state - transparent at top, solid on scroll
+  const isTransparent = !scrolled && !menuOpen && !activeDropdown;
+  const textColor = isTransparent ? "text-white" : "text-ink";
+  const subTextColor = isTransparent ? "text-white/80" : "text-charcoal";
+  const iconColor = isTransparent ? "text-white/90 hover:text-white" : "text-charcoal hover:text-terracotta";
 
   return (
-    <div className="sticky top-0 z-50 flex flex-col transition-all duration-700">
+    <div className="fixed top-0 left-0 w-full z-50 flex flex-col transition-all duration-700">
 
       <header
         className={`w-full transition-all duration-700 ${isTransparent
-          ? "bg-transparent shadow-none backdrop-blur-none"
+          ? "bg-transparent shadow-none backdrop-blur-none border-b border-transparent"
           : "bg-warm-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(196,185,171,0.5)]"
           }`}
         onMouseLeave={() => setActiveDropdown(null)}
       >
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
 
           {/* Main Row */}
-          <div className="flex items-center justify-between h-16 relative border-b border-sand/10">
+          <div className={`flex items-center justify-between h-16 lg:h-20 relative border-b transition-colors duration-700 ${isTransparent ? "border-white/10" : "border-sand/10"}`}>
 
             {/* Left: Brand Logo & Name (Inline Icon + Vertically Stacked Text) */}
             <div className="flex items-center justify-start flex-1 lg:flex-none">
@@ -107,7 +105,7 @@ export default function Navbar() {
                     alt="LivingSpace Wordmark"
                     width={140}
                     height={28}
-                    className="h-[23px] w-auto object-contain"
+                    className={`h-[23px] w-auto object-contain transition-all duration-700 ${isTransparent ? "invert brightness-200" : ""}`}
                     priority
                   />
                   <span
@@ -120,28 +118,43 @@ export default function Navbar() {
               </a>
             </div>
 
-            {/* Center: Studio Locator & Design Consultation */}
-            <div className="hidden lg:flex flex-1 justify-center items-center gap-6">
-              <a
-                href="#studios"
-                className="text-[9px] tracking-[0.25em] uppercase text-muted hover:text-ink transition-colors font-light"
-              >
-                Studio Locator
-              </a>
-              <span className="text-sand/50 text-[8px] select-none">•</span>
-              <a
-                href="#consultation"
-                className="text-[9px] tracking-[0.25em] uppercase text-[#C49A5D] hover:text-ink transition-colors font-medium"
-              >
-                Book Consultation
-              </a>
-            </div>
+
+
+            {/* Center: Desktop Nav Links */}
+            <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+              {NAV.map((item) => (
+                <div
+                  key={item.label}
+                  className="relative flex items-center"
+                  onMouseEnter={() => setActiveDropdown(item.mega ? item.label : null)}
+                >
+                  <a
+                    href={item.href}
+                    className={`relative flex items-center gap-1 text-[13px] tracking-[0.05em] transition-colors duration-700 font-medium py-1 group ${textColor}`}
+                  >
+                    <span>{item.label}</span>
+                    {item.mega && (
+                      <svg 
+                        className={`w-2.5 h-2.5 opacity-55 mt-0.5 transition-transform duration-500 ${activeDropdown === item.label ? "rotate-180" : ""}`} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
+                    <span className={`absolute -bottom-1 left-0 w-full h-[1px] transition-transform duration-700 origin-left bg-current ${activeDropdown === item.label ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
+                  </a>
+                </div>
+              ))}
+            </nav>
 
             {/* Right: Icons (Search, Bag, Heart, Login text) */}
             <div className="flex-1 lg:flex-none flex items-center justify-end gap-3 sm:gap-5">
               <button
                 onClick={() => setSearchOpen(true)}
-                className={`w-8 h-8 flex items-center justify-center transition-colors ${iconColor} hover:text-terracotta`}
+                className={`w-8 h-8 flex items-center justify-center transition-all duration-700 ${iconColor}`}
                 aria-label="Search"
               >
                 <Search size={18} strokeWidth={1.5} />
@@ -149,7 +162,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => setCartOpen(true)}
-                className={`w-8 h-8 flex items-center justify-center transition-colors relative ${iconColor} hover:text-terracotta`}
+                className={`w-8 h-8 flex items-center justify-center transition-all duration-700 relative ${iconColor}`}
                 aria-label={`Cart, ${count} items`}
               >
                 <ShoppingBag size={18} strokeWidth={1.5} />
@@ -160,19 +173,19 @@ export default function Navbar() {
                 )}
               </button>
 
-              <button className={`w-8 h-8 flex items-center justify-center transition-colors ${iconColor} hover:text-terracotta`} aria-label="Favorites">
+              <button className={`w-8 h-8 flex items-center justify-center transition-all duration-700 ${iconColor}`} aria-label="Favorites">
                 <Heart size={18} strokeWidth={1.5} />
               </button>
 
               <a
                 href="#"
-                className={`hidden sm:inline-block text-[11px] tracking-[0.2em] uppercase font-medium transition-colors ${textColor} hover:text-terracotta ml-1`}
+                className={`hidden sm:inline-block text-[11px] tracking-[0.2em] uppercase font-medium transition-colors duration-700 ${textColor} ml-1`}
               >
                 Login
               </a>
 
               <button
-                className={`w-8 h-8 flex items-center justify-center lg:hidden transition-colors ${iconColor} ml-1`}
+                className={`w-8 h-8 flex items-center justify-center lg:hidden transition-colors duration-700 ${iconColor} ml-1`}
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label="Toggle menu"
               >
@@ -180,67 +193,49 @@ export default function Navbar() {
               </button>
             </div>
           </div>
-
-          {/* Desktop Secondary Row: Nav Links */}
-          <div className="hidden lg:flex items-center justify-center py-2 border-b border-sand/5">
-            <nav className="flex items-center gap-10 xl:gap-14">
-              {NAV.map((item) => (
-                <div
-                  key={item.label}
-                  className="relative flex items-center"
-                  onMouseEnter={() => setActiveDropdown(item.mega ? item.label : null)}
-                >
-                  <a
-                    href={item.href}
-                    className={`relative flex items-center gap-1 text-[13px] tracking-[0.05em] transition-colors duration-700 font-medium py-1 group ${subTextColor} hover:text-terracotta`}
-                  >
-                    {item.label}
-                    <span className={`absolute -bottom-1 left-0 w-full h-[1px] transition-transform duration-700 origin-left bg-ink ${activeDropdown === item.label ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
-                  </a>
-                </div>
-              ))}
-            </nav>
-          </div>
-        </div>
-
-        {/* Mobile Sub-navigation Row (Swipeable menu under header) */}
-        <div
-          className={`lg:hidden w-full overflow-x-auto scrollbar-none py-2.5 px-4 flex items-center gap-4 transition-all duration-700 border-t border-b ${isTransparent
-              ? "bg-transparent border-[#C49A5D]/20 text-white/80"
-              : "bg-warm-white/95 border-[#C49A5D]/30 text-ink/80"
-            }`}
-        >
-          <div className="flex items-center gap-3.5 mx-auto whitespace-nowrap text-[12px] tracking-[0.05em] font-medium">
-            {NAV.map((item, index) => (
-              <span key={item.label} className="flex items-center gap-3.5">
-                {index > 0 && <span className="text-[#C49A5D] text-[8px]">•</span>}
-                <a href={item.href} className="hover:text-[#C49A5D] transition-colors">{item.label}</a>
-              </span>
-            ))}
-          </div>
         </div>
 
         {/* Mega Menu Dropdown */}
         <div className={`absolute top-full left-0 w-full bg-warm-white border-t border-sand/30 shadow-2xl transition-all duration-700 origin-top overflow-hidden ${activeDropdown ? "opacity-100 max-h-[600px] py-16" : "opacity-0 max-h-0 py-0 pointer-events-none"}`}>
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+          <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
             {activeDropdown && NAV.find(n => n.label === activeDropdown)?.mega && (
-              <div className="flex justify-between gap-12 max-w-4xl mx-auto text-ink">
-                {NAV.find(n => n.label === activeDropdown)?.mega?.map((column: any) => (
-                  <div key={column.title} className="flex-1 space-y-8">
-                    <h3 className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted">
-                      {column.title}
-                    </h3>
-                    <ul className="space-y-4">
-                      {column.links.map((link: string) => (
-                        <li key={link}>
-                          <a href="#" className="text-[13px] tracking-wide hover:text-terracotta transition-colors block font-light">
-                            {link}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div className="grid grid-cols-12 gap-12 max-w-6xl mx-auto text-ink">
+                
+                {/* Left Side: Large category title of selected item */}
+                <div className="col-span-4 flex flex-col justify-start border-r border-sand/30 pr-12">
+                  <span className="text-[9px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-2">
+                    Spatial Curation
+                  </span>
+                  <h2 className="font-display text-4xl font-light tracking-wide text-ink capitalize">
+                    {activeDropdown}
+                  </h2>
+                  <p className="text-xs text-charcoal/60 font-light mt-4 leading-relaxed max-w-[220px]">
+                    {activeDropdown === "Categories" 
+                      ? "Meticulously crafted items, organized by form and function to elevate everyday spaces." 
+                      : "Thoughtfully curated collections, inspired by international art, architecture, and design."}
+                  </p>
+                </div>
+
+                {/* Right Side: Columns of Sub-categories */}
+                <div className="col-span-8 grid grid-cols-3 gap-8">
+                  {NAV.find(n => n.label === activeDropdown)?.mega?.map((column: any) => (
+                    <div key={column.title} className="space-y-6">
+                      <h3 className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted">
+                        {column.title}
+                      </h3>
+                      <ul className="space-y-3.5">
+                        {column.links.map((link: string) => (
+                          <li key={link}>
+                            <a href="#" className="text-[13px] tracking-wide hover:text-terracotta transition-colors block font-light">
+                              {link}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
               </div>
             )}
           </div>
@@ -248,18 +243,78 @@ export default function Navbar() {
       </header>
 
       {/* Mobile nav drawer */}
-      <div className={`lg:hidden fixed inset-0 top-[91px] bg-warm-white z-40 transition-transform duration-700 overflow-y-auto ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className="px-6 py-8 space-y-1">
-          {NAV.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className="block py-4 border-b border-sand/40 text-[14px] tracking-[0.05em] font-medium text-ink"
-            >
-              {item.label}
-            </a>
-          ))}
+      <div className={`lg:hidden fixed w-full h-[calc(100dvh-4rem)] top-16 left-0 bg-warm-white z-40 transition-transform duration-700 overflow-y-auto ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="px-6 pt-6 pb-24 space-y-1">
+          {NAV.map((item) => {
+            const hasMega = !!item.mega;
+            const isExpanded = expandedMobileItem === item.label;
+
+            return (
+              <div key={item.label} className="border-b border-sand/30">
+                {hasMega ? (
+                  <div>
+                    {/* Expand Trigger */}
+                    <button
+                      onClick={() => setExpandedMobileItem(isExpanded ? null : item.label)}
+                      className="w-full flex items-center justify-between py-4.5 text-[14px] tracking-[0.05em] font-medium text-ink text-left focus:outline-none"
+                    >
+                      <span>{item.label}</span>
+                      <svg 
+                        className={`w-3 h-3 opacity-60 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {/* Collapsible Panel */}
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        isExpanded ? "max-h-[600px] pb-6 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                      }`}
+                    >
+                      <div className="pl-4 space-y-6 pt-2 border-l border-sand/35 ml-1.5">
+                        {item.mega?.map((column: any) => (
+                          <div key={column.title} className="space-y-3">
+                            <h4 className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#C49A5D]">
+                              {column.title}
+                            </h4>
+                            <ul className="space-y-3">
+                              {column.links.map((link: string) => (
+                                <li key={link}>
+                                  <a 
+                                    href={item.href}
+                                    onClick={() => {
+                                      setMenuOpen(false);
+                                      setExpandedMobileItem(null);
+                                    }}
+                                    className="text-[13px] tracking-wide text-charcoal hover:text-terracotta transition-colors block font-light"
+                                  >
+                                    {link}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <a
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-4.5 text-[14px] tracking-[0.05em] font-medium text-ink"
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </div>
+            );
+          })}
           <div className="pt-8 space-y-5">
             <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Account</a>
             <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Partner Program</a>

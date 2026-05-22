@@ -69,8 +69,8 @@ export default function FeaturedProducts() {
     : PRODUCTS.filter(p => p.category === activeTab);
 
   return (
-    <section className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="featured" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Editorial Header & Filters - Same Row */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
@@ -102,8 +102,8 @@ export default function FeaturedProducts() {
           </div>
         </div>
 
-        {/* 3-Column Minimal Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        {/* 3-Column Minimal Grid (2 Columns on Mobile) */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-10 sm:gap-y-16">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
@@ -122,29 +122,29 @@ function ProductCard({ id, name, price, originalPrice, category, image }: typeof
   return (
     <div className="group flex flex-col h-full">
       {/* Studio Image Area */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-sand/10 mb-6 group/img border border-sand/20">
+      <div className="relative aspect-[3/4] overflow-hidden bg-sand/10 mb-4 sm:mb-6 group/img border border-sand/20">
         <Image 
           src={image} 
           alt={name} 
           fill 
           className="object-cover transition-transform duration-[2s] group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
         />
         
-        {/* Top-right Wishlist */}
+        {/* Top-right Wishlist (Visible on mobile, hover on desktop) */}
         <button
           onClick={(e) => { e.stopPropagation(); setWished(!wished); }}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-sm"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-sm"
           aria-label="Add to wishlist"
         >
-          <Heart size={13} className={wished ? "fill-terracotta text-terracotta" : "text-ink/60"} strokeWidth={1.5} />
+          <Heart size={11} className={wished ? "fill-terracotta text-terracotta" : "text-ink/60"} strokeWidth={1.5} />
         </button>
 
-        {/* Glassmorphic Add to Bag Button */}
-        <div className="absolute inset-x-4 bottom-4 flex justify-center z-20">
+        {/* Glassmorphic Add to Bag Button (Desktop only) */}
+        <div className="absolute inset-x-4 bottom-4 hidden lg:flex justify-center z-20">
           <button
             onClick={() => addItem({ id: String(id), name, price, image })}
-            className="w-full py-3 bg-white/90 backdrop-blur-md border border-sand/30 text-ink text-[10px] tracking-[0.25em] uppercase font-bold translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-center justify-center gap-2 hover:bg-ink hover:text-white"
+            className="w-full py-3 bg-white/90 backdrop-blur-md border border-sand/30 text-ink text-[10px] tracking-[0.25em] uppercase font-bold translate-y-4 opacity-0 group-hover/img:translate-y-0 group-hover/img:opacity-100 transition-all duration-500 ease-out flex items-center justify-center gap-2 hover:bg-ink hover:text-white"
           >
             Add to Bag <Plus size={12} />
           </button>
@@ -153,16 +153,16 @@ function ProductCard({ id, name, price, originalPrice, category, image }: typeof
 
       {/* Balanced Product Info */}
       <div className="flex flex-col flex-1 px-1">
-        <p className="text-[9px] tracking-[0.25em] uppercase text-stone-500 mb-2">{category}</p>
+        <p className="text-[8px] sm:text-[9px] tracking-[0.25em] uppercase text-stone-500 mb-1 sm:mb-2">{category}</p>
         
-        <h3 className="font-display text-lg text-ink font-light leading-tight mb-2 group-hover:text-[#C49A5D] transition-colors duration-300">
+        <h3 className="font-display text-sm sm:text-lg text-ink font-light leading-tight mb-1 sm:mb-2 group-hover:text-[#C49A5D] transition-colors duration-300">
           {name}
         </h3>
         
-        <div className="mt-auto flex items-baseline gap-3 flex-wrap">
-          <span className="text-base font-semibold text-ink">{fmt(price)}</span>
-          <span className="text-xs text-stone-400 line-through font-light">{fmt(originalPrice)}</span>
-          <span className="text-[10px] text-terracotta font-medium tracking-wide">({discount}% OFF)</span>
+        <div className="mt-auto flex items-baseline gap-1.5 sm:gap-3 flex-wrap">
+          <span className="text-sm sm:text-base font-semibold text-ink">{fmt(price)}</span>
+          <span className="text-[10px] sm:text-xs text-stone-400 line-through font-light">{fmt(originalPrice)}</span>
+          <span className="text-[9px] sm:text-[10px] text-terracotta font-medium tracking-wide">({discount}% OFF)</span>
         </div>
       </div>
     </div>

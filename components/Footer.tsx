@@ -25,7 +25,7 @@ export default function Footer() {
       <TrustBadges />
 
       {/* Main footer */}
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-24 lg:pb-8">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 pt-12 sm:pt-16 lg:pt-20 pb-24 lg:pb-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 sm:gap-10 mb-12 sm:mb-16">
           {/* Brand col */}
           <div className="col-span-2 md:col-span-4 lg:col-span-2">

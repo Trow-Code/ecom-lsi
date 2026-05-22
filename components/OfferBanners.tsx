@@ -12,7 +12,7 @@ const OFFERS = [
     code: "ARCHIVE30",
     cta: "Explore Archive",
     href: "#collections",
-    img: "/coll_manhattan_urban_1777654813861.png",
+    img: "/offer_archive_premium.png",
     tag: "Limited Selection"
   },
   {
@@ -22,7 +22,7 @@ const OFFERS = [
     code: "ATELIERFINISH",
     cta: "Book Consultation",
     href: "#consultation",
-    img: "/coll_travancore_roots_heritage_1777654900478.png",
+    img: "/offer_atelier_premium.png",
     tag: "Seasonal Privilege"
   }
 ];
@@ -59,11 +59,10 @@ export default function OfferBanners() {
   };
 
   return (
-    <section className="bg-[#FAF8F5] py-20 sm:py-24 border-t border-sand/35">
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-12 sm:mb-16">
+    <section id="offers" className="bg-[#FAF8F5] py-20 sm:py-24 border-t border-sand/35 overflow-hidden">
+      {/* Section Header */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 mb-12 sm:mb-16">
+        <div className="text-center max-w-xl mx-auto">
           <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-3">
             Exclusive Privileges
           </p>
@@ -71,8 +70,10 @@ export default function OfferBanners() {
             Limited Editions & Offers
           </h2>
         </div>
+      </div>
 
-        {/* Staggered entry container */}
+      {/* Cards Scroll Container */}
+      <div className="w-full xl:max-w-[1440px] xl:mx-auto xl:px-6 sm:xl:px-12 lg:xl:px-20 xl:xl:px-24">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -80,7 +81,7 @@ export default function OfferBanners() {
           viewport={{ once: true, margin: "-100px" }}
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex overflow-x-auto xl:grid xl:grid-cols-2 gap-6 xl:gap-8 lg:gap-12 snap-x snap-mandatory scrollbar-none pb-4 xl:pb-0 scroll-smooth w-full"
+          className="flex overflow-x-auto xl:grid xl:grid-cols-2 gap-6 xl:gap-8 lg:gap-12 snap-x snap-mandatory scrollbar-none pb-4 xl:pb-0 scroll-smooth w-full px-6 sm:px-12 lg:px-20 xl:px-24 xl:px-0 scroll-pl-6 sm:scroll-pl-12 lg:scroll-pl-20 xl:scroll-pl-24 xl:scroll-pl-0 scroll-pr-6 sm:scroll-pr-12 lg:scroll-pr-20 xl:scroll-pr-24 xl:scroll-pr-0"
         >
           {OFFERS.map((offer, idx) => (
             <motion.div 

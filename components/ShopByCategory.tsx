@@ -2,17 +2,17 @@
 import Image from "next/image";
 
 const CATEGORIES = [
-  { id: 1, name: "Sofas", image: "/SOFA.jpg", count: "12 Designs", from: "₹1,68,000" },
-  { id: 2, name: "Chairs", image: "/prod_nicholas_lounge_chair_1777655201291.png", count: "24 Designs", from: "₹28,000" },
-  { id: 3, name: "Tables", image: "/CONSOLE TABLE 1.jpg", count: "18 Designs", from: "₹56,000" },
-  { id: 4, name: "Lighting", image: "/prod_travertine_lamp.png", count: "32 Designs", from: "₹8,500" },
-  { id: 5, name: "Decor", image: "/prod_orb_candle_holder_1777655159473.png", count: "45 Designs", from: "₹2,400" },
+  { id: 1, name: "Sofas", image: "/cat_sofa_premium.png", count: "12 Designs", from: "₹1,68,000", position: "object-center" },
+  { id: 2, name: "Chairs", image: "/cat_chair_premium.png", count: "24 Designs", from: "₹28,000", position: "lg:object-[38%_center] object-center" },
+  { id: 3, name: "Tables", image: "/cat_table_premium.png", count: "18 Designs", from: "₹56,000", position: "object-center" },
+  { id: 4, name: "Lighting", image: "/prod_travertine_lamp.png", count: "32 Designs", from: "₹8,500", position: "object-center" },
+  { id: 5, name: "Decor", image: "/cat_decor_premium.png", count: "45 Designs", from: "₹2,400", position: "lg:object-[65%_center] object-center" },
 ];
 
 export default function ShopByCategory() {
   return (
-    <section id="categories-section" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="categories" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
 
         {/* Sophisticated Editorial Header */}
         <div className="flex flex-col items-start mb-10 lg:mb-14">
@@ -24,7 +24,7 @@ export default function ShopByCategory() {
           </h2>
         </div>
 
-        {/* Staggered Editorial Row Layout */}
+        {/* Staggered Editorial Row Layout (Balanced 2-Column Mobile Grid) */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 xl:gap-8 items-start">
           {CATEGORIES.map((cat, idx) => {
             // Editorial heights & offsets for desktop to look high-fashion
@@ -36,19 +36,21 @@ export default function ShopByCategory() {
               "lg:h-[470px] lg:mt-4",   // Decor
             ][idx];
 
+            const isFirst = idx === 0;
+
             return (
               <div
                 key={cat.id}
-                className="group flex flex-col cursor-pointer"
+                className={`group flex flex-col cursor-pointer ${isFirst ? "col-span-2 lg:col-span-1" : "col-span-1"}`}
               >
                 {/* Image Frame with soft warmth and hover scale */}
-                <div className={`relative w-full aspect-[4/5] lg:aspect-auto overflow-hidden bg-sand/15 border border-sand/20 ${cardHeightStyles}`}>
+                <div className={`relative w-full ${isFirst ? "aspect-[2/1] sm:aspect-[4/5]" : "aspect-[4/5]"} lg:aspect-auto overflow-hidden bg-sand/15 border border-sand/20 ${cardHeightStyles}`}>
                   <Image
                     src={cat.image}
                     alt={cat.name}
                     fill
-                    className="object-cover brightness-[0.9] group-hover:brightness-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out"
-                    sizes="(max-width: 768px) 50vw, 250px"
+                    className={`object-cover brightness-[0.9] group-hover:brightness-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out ${cat.position || "object-center"}`}
+                    sizes={isFirst ? "100vw" : "(max-width: 768px) 50vw, 250px"}
                   />
                   <div className="absolute inset-0 bg-ink/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
                 </div>

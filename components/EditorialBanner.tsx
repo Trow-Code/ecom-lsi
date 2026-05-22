@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function EditorialBanner() {
   return (
     <section className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           
