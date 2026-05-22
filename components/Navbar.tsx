@@ -46,6 +46,8 @@ const NAV = [
     ]
   },
   { label: "Concepts", href: "#" },
+  { label: "Atelier", href: "#consultation" },
+  { label: "Journal", href: "#" },
   { label: "Offers", href: "#" },
 ];
 
@@ -190,7 +192,7 @@ export default function Navbar() {
                 >
                   <a
                     href={item.href}
-                    className={`relative flex items-center gap-1 text-[11px] tracking-[0.25em] uppercase transition-colors duration-700 font-medium py-1 group ${subTextColor} hover:text-terracotta`}
+                    className={`relative flex items-center gap-1 text-[13px] tracking-[0.05em] transition-colors duration-700 font-medium py-1 group ${subTextColor} hover:text-terracotta`}
                   >
                     {item.label}
                     <span className={`absolute -bottom-1 left-0 w-full h-[1px] transition-transform duration-700 origin-left bg-ink ${activeDropdown === item.label ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
@@ -208,7 +210,7 @@ export default function Navbar() {
               : "bg-warm-white/95 border-[#C49A5D]/30 text-ink/80"
             }`}
         >
-          <div className="flex items-center gap-3.5 mx-auto whitespace-nowrap text-[10px] tracking-[0.2em] uppercase font-medium">
+          <div className="flex items-center gap-3.5 mx-auto whitespace-nowrap text-[12px] tracking-[0.05em] font-medium">
             {NAV.map((item, index) => (
               <span key={item.label} className="flex items-center gap-3.5">
                 {index > 0 && <span className="text-[#C49A5D] text-[8px]">•</span>}
@@ -253,15 +255,15 @@ export default function Navbar() {
               key={item.label}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="block py-4 border-b border-sand/40 text-[12px] tracking-[0.2em] uppercase font-medium text-ink"
+              className="block py-4 border-b border-sand/40 text-[14px] tracking-[0.05em] font-medium text-ink"
             >
               {item.label}
             </a>
           ))}
           <div className="pt-8 space-y-5">
-            <a href="#" className="block text-[11px] tracking-[0.15em] uppercase text-muted font-medium">Account</a>
-            <a href="#" className="block text-[11px] tracking-[0.15em] uppercase text-muted font-medium">Partner Program</a>
-            <a href="#" className="block text-[11px] tracking-[0.15em] uppercase text-muted font-medium">Free Design Consultation</a>
+            <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Account</a>
+            <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Partner Program</a>
+            <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Free Design Consultation</a>
           </div>
         </div>
       </div>

@@ -2,19 +2,20 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
 export type CartItem = {
-  id: number;
+  id: string | number;
   name: string;
   price: number;
-  category: string;
-  gradient: string;
+  category?: string;
+  gradient?: string;
+  image?: string;
   qty: number;
 };
 
 type CartCtx = {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "qty">) => void;
-  removeItem: (id: number) => void;
-  updateQty: (id: number, qty: number) => void;
+  removeItem: (id: string | number) => void;
+  updateQty: (id: string | number, qty: number) => void;
   clearCart: () => void;
   total: number;
   count: number;
@@ -48,11 +49,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCartOpen(true);
   }, []);
 
-  const removeItem = useCallback((id: number) => {
+  const removeItem = useCallback((id: string | number) => {
     setItems((prev) => prev.filter((i) => i.id !== id));
   }, []);
 
-  const updateQty = useCallback((id: number, qty: number) => {
+  const updateQty = useCallback((id: string | number, qty: number) => {
     if (qty < 1) return;
     setItems((prev) => prev.map((i) => i.id === id ? { ...i, qty } : i));
   }, []);

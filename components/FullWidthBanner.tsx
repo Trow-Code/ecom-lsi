@@ -6,7 +6,7 @@ export default function FullWidthBanner() {
     <section className="bg-white py-8 sm:py-12">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
         <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[500px] overflow-hidden">
-          
+
           {/* Background Image */}
           <Image
             src="/Fig/banner.png"
@@ -22,7 +22,7 @@ export default function FullWidthBanner() {
 
           {/* Content overlay inside contained frame */}
           <div className="absolute inset-0 p-8 sm:p-12 lg:p-16 flex items-center justify-start">
-            
+
             {/* Blended Typography Panel */}
             <div className="max-w-md w-full relative z-10 space-y-6">
               <div className="space-y-2">

@@ -52,8 +52,8 @@ export default function BestSellers() {
   };
 
   return (
-    <section className="bg-warm-white py-16 sm:py-20 lg:py-24 border-t border-sand/20">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+    <section className="bg-[#FAF8F5] py-20 sm:py-24 border-t border-sand/35">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
@@ -79,7 +79,7 @@ export default function BestSellers() {
             return (
               <div key={item.id} className="group flex flex-col h-full">
                 {/* Image Wrapper */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#FAF8F5] border border-sand/30 mb-6 group/img">
+                <div className="relative aspect-[3/4] overflow-hidden bg-sand/10 border border-sand/20 mb-6 group/img">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -89,7 +89,7 @@ export default function BestSellers() {
                   />
 
                   {/* Discount Badge */}
-                  <span className="absolute top-4 left-4 bg-terracotta text-white text-[9px] tracking-wider uppercase px-2.5 py-1 font-medium z-10">
+                  <span className="absolute top-4 left-4 bg-terracotta text-white text-[8px] tracking-wider uppercase px-2 py-1 font-semibold z-10 border border-white/10">
                     -{discount}%
                   </span>
 
@@ -100,20 +100,19 @@ export default function BestSellers() {
                     aria-label="Add to wishlist"
                   >
                     <Heart
-                      size={14}
+                      size={13}
                       className={isWished ? "fill-terracotta text-terracotta" : "text-ink/60"}
                       strokeWidth={1.5}
                     />
                   </button>
 
                   {/* Quick Add Overlay Button on Hover */}
-                  <div className="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 group-hover/img:translate-y-0 group-hover/img:opacity-100 transition-all duration-500 z-10">
+                  <div className="absolute inset-x-4 bottom-4 flex justify-center z-10">
                     <button
                       onClick={() => addItem({ id: item.id, name: item.name, price: item.price, image: item.image })}
-                      className="w-full bg-ink/90 hover:bg-ink text-white text-[10px] tracking-[0.2em] uppercase py-3 font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                      className="w-full py-3 bg-white/90 backdrop-blur-md border border-sand/30 text-ink text-[10px] tracking-[0.25em] uppercase font-bold translate-y-4 opacity-0 group-hover/img:translate-y-0 group-hover/img:opacity-100 transition-all duration-500 ease-out flex items-center justify-center gap-2 hover:bg-ink hover:text-white"
                     >
-                      <Plus size={12} />
-                      <span>Add to Cart</span>
+                      Add to Bag <Plus size={12} />
                     </button>
                   </div>
                 </div>
@@ -124,13 +123,13 @@ export default function BestSellers() {
                     <p className="text-[9px] tracking-[0.15em] uppercase text-stone-500 mb-1">
                       {item.category}
                     </p>
-                    <h3 className="font-display text-base font-light text-ink tracking-wide group-hover:text-[#C49A5D] transition-colors duration-300">
+                    <h3 className="font-display text-lg font-light text-ink tracking-wide group-hover:text-[#C49A5D] transition-colors duration-300">
                       {item.name}
                     </h3>
                   </div>
 
                   <div className="flex items-center gap-3 pt-1">
-                    <span className="text-sm font-semibold text-ink">{fmt(item.price)}</span>
+                    <span className="text-base font-semibold text-ink">{fmt(item.price)}</span>
                     <span className="text-xs text-stone-400 line-through font-light">
                       {fmt(item.originalPrice)}
                     </span>
