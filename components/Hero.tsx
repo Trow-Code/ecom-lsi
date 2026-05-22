@@ -10,10 +10,10 @@ const PRODUCTS = [
     name: "The Monolith Sofa",
     category: "Lounge / Series 01",
     price: "₹1,85,000",
-    image: "/hero_living_room_1_1777654627821.png",
+    image: "/hero_luxury_living.png",
     hotspots: [
-      { x: "46%", y: "58%", label: "Sovereign Bouclé Sofa" },
-      { x: "72%", y: "52%", label: "Organic Accent Table" }
+      { x: "66%", y: "38%", label: "Sovereign Bouclé Sofa" },
+      { x: "42%", y: "48%", label: "Travertine Coffee Table" }
     ]
   },
   {
@@ -21,10 +21,10 @@ const PRODUCTS = [
     name: "Sanctuary Dining Table",
     category: "Dining / Series 02",
     price: "₹1,20,000",
-    image: "/hero_modern_dining.png",
+    image: "/hero_luxury_dining.png",
     hotspots: [
-      { x: "52%", y: "48%", label: "Sanctuary Dining Table" },
-      { x: "32%", y: "54%", label: "Arona Rattan Chair" }
+      { x: "54%", y: "66%", label: "Sanctuary Dining Table" },
+      { x: "25%", y: "72%", label: "Arona Rattan Chair" }
     ]
   },
   {
@@ -32,10 +32,10 @@ const PRODUCTS = [
     name: "The Archive Desk System",
     category: "Study / Edition 01",
     price: "₹68,000",
-    image: "/hero_furniture_detail_1777654659357.png",
+    image: "/hero_luxury_study.png",
     hotspots: [
-      { x: "62%", y: "44%", label: "Atelier Console Desk" },
-      { x: "42%", y: "66%", label: "Brass Pendant Lamp" }
+      { x: "45%", y: "50%", label: "Atelier Console Desk" },
+      { x: "41%", y: "32%", label: "Brass Task Lamp" }
     ]
   },
 ];
@@ -57,21 +57,23 @@ export default function Hero() {
       <AnimatePresence>
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 1.08, x: current === 0 ? -30 : 0 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 2.2, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ duration: 2.5, ease: [0.25, 1, 0.5, 1] }}
           className="absolute inset-0 z-0"
         >
           <Image
             src={PRODUCTS[current].image}
             alt={PRODUCTS[current].name}
             fill
-            className="object-cover brightness-[0.7] contrast-[1.02]"
+            className={`object-cover brightness-[0.76] contrast-[1.02] ${current === 0 ? "-scale-x-100 lg:object-[center_70%]" : ""}`}
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
+          {/* Faint, natural vignette gradients for text pop */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/55 via-ink/15 to-transparent z-1" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/10 to-transparent z-1" />
         </motion.div>
       </AnimatePresence>
 
@@ -109,7 +111,7 @@ export default function Hero() {
 
         {/* Left Block: Editorial Typography */}
         <div className="flex flex-col items-start pointer-events-auto max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl pb-4 sm:pb-0">
-          <h1 className="font-display text-[45px] sm:text-[72px] lg:text-[92px] font-normal text-white leading-[0.9] tracking-tight mb-6">
+          <h1 className="font-display text-[45px] sm:text-[72px] lg:text-[92px] font-normal text-white leading-[0.9] tracking-tight mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)]">
             Bring Trend <br />
             <span className="relative inline-block font-signature text-[#C49A5D] text-[65px] sm:text-[95px] lg:text-[120px] font-normal leading-none py-1 select-none pr-5 sm:pr-8">
               Culture
