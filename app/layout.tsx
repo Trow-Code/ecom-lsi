@@ -6,24 +6,6 @@ import SearchOverlay from "@/components/SearchOverlay";
 import Toast from "@/components/Toast";
 import BackToTop from "@/components/BackToTop";
 import MobileNav from "@/components/MobileNav";
-import { Forum, Urbanist, Pinyon_Script } from "next/font/google";
-
-const forum = Forum({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-forum",
-});
-
-const urbanist = Urbanist({
-  subsets: ["latin"],
-  variable: "--font-urbanist",
-});
-
-const pinyon = Pinyon_Script({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-pinyon",
-});
 
 export const metadata: Metadata = {
   title: "LivingSpace — Ultra Luxury Living Spaces",
@@ -32,7 +14,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${forum.variable} ${urbanist.variable} ${pinyon.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Forum&family=Pinyon+Script&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" 
+          rel="stylesheet" 
+        />
+      </head>
       <body className="antialiased">
         <CartProvider>
           {children}

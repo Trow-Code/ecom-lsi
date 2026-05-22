@@ -78,46 +78,65 @@ export default function Navbar() {
 
       <header
         className={`w-full transition-all duration-700 ${isTransparent
-            ? "bg-transparent shadow-none backdrop-blur-none"
-            : "bg-warm-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(196,185,171,0.5)]"
+          ? "bg-transparent shadow-none backdrop-blur-none"
+          : "bg-warm-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(196,185,171,0.5)]"
           }`}
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
-          
-          {/* Main Row */}
-          <div className="flex items-center justify-between h-14 lg:h-16 relative border-b border-sand/10">
 
-            {/* Left: Brand Logo (Desktop Only) */}
-            <div className="hidden lg:flex flex-1 items-center justify-start">
-              <a href="#" className="flex items-center hover:opacity-90 transition-opacity">
-                <Image 
-                  src="/livingspace.svg" 
-                  alt="LivingSpace Logo" 
-                  width={28} 
-                  height={28} 
-                  className="flex-shrink-0" 
+          {/* Main Row */}
+          <div className="flex items-center justify-between h-16 relative border-b border-sand/10">
+
+            {/* Left: Brand Logo & Name (Inline Icon + Vertically Stacked Text) */}
+            <div className="flex items-center justify-start flex-1 lg:flex-none">
+              <a href="#" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+                <Image
+                  src="/livingspace.svg"
+                  alt="LivingSpace Logo Icon"
+                  width={40}
+                  height={40}
+                  className="h-[40px] w-auto object-contain"
+                  priority
                 />
+                <div className="flex flex-col items-start pt-1">
+                  <Image
+                    src="/LSI_logo.svg"
+                    alt="LivingSpace Wordmark"
+                    width={140}
+                    height={28}
+                    className="h-[23px] w-auto object-contain"
+                    priority
+                  />
+                  <span
+                    className="text-[16px] font-normal text-[#C49A5D] leading-none -mt-0.5 pl-9 transform -rotate-[3deg] origin-left select-none pointer-events-none"
+                    style={{ fontFamily: "'Pinyon Script', 'Snell Roundhand', cursive" }}
+                  >
+                    Interior
+                  </span>
+                </div>
               </a>
             </div>
 
-            {/* Center: Brand Name + Cursive Interior */}
-            <div className="flex-1 lg:flex-none flex justify-center items-center">
-              <a href="#" className="flex flex-col items-center group pt-1">
-                <span className={`font-sans text-lg sm:text-xl lg:text-[22px] font-bold tracking-[0.25em] uppercase leading-none transition-colors duration-700 ${textColor}`}>
-                  LIVING SPACE
-                </span>
-                <span
-                  className="text-lg sm:text-xl lg:text-[22px] font-normal leading-none transition-colors duration-700 -mt-1 pointer-events-none text-[#C49A5D]"
-                  style={{ fontFamily: "'Pinyon Script', 'Snell Roundhand', cursive" }}
-                >
-                  Interior
-                </span>
+            {/* Center: Studio Locator & Design Consultation */}
+            <div className="hidden lg:flex flex-1 justify-center items-center gap-6">
+              <a
+                href="#studios"
+                className="text-[9px] tracking-[0.25em] uppercase text-muted hover:text-ink transition-colors font-light"
+              >
+                Studio Locator
+              </a>
+              <span className="text-sand/50 text-[8px] select-none">•</span>
+              <a
+                href="#consultation"
+                className="text-[9px] tracking-[0.25em] uppercase text-[#C49A5D] hover:text-ink transition-colors font-medium"
+              >
+                Book Consultation
               </a>
             </div>
 
             {/* Right: Icons (Search, Bag, Heart, Login text) */}
-            <div className="flex-1 flex items-center justify-end gap-3 sm:gap-5">
+            <div className="flex-1 lg:flex-none flex items-center justify-end gap-3 sm:gap-5">
               <button
                 onClick={() => setSearchOpen(true)}
                 className={`w-8 h-8 flex items-center justify-center transition-colors ${iconColor} hover:text-terracotta`}
@@ -125,7 +144,7 @@ export default function Navbar() {
               >
                 <Search size={18} strokeWidth={1.5} />
               </button>
-              
+
               <button
                 onClick={() => setCartOpen(true)}
                 className={`w-8 h-8 flex items-center justify-center transition-colors relative ${iconColor} hover:text-terracotta`}
@@ -143,8 +162,8 @@ export default function Navbar() {
                 <Heart size={18} strokeWidth={1.5} />
               </button>
 
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className={`hidden sm:inline-block text-[11px] tracking-[0.2em] uppercase font-medium transition-colors ${textColor} hover:text-terracotta ml-1`}
               >
                 Login
@@ -161,7 +180,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Secondary Row: Nav Links */}
-          <div className="hidden lg:flex items-center justify-center py-2">
+          <div className="hidden lg:flex items-center justify-center py-2 border-b border-sand/5">
             <nav className="flex items-center gap-10 xl:gap-14">
               {NAV.map((item) => (
                 <div
@@ -171,10 +190,10 @@ export default function Navbar() {
                 >
                   <a
                     href={item.href}
-                    className={`relative flex items-center gap-1 text-[11px] tracking-[0.25em] uppercase transition-colors duration-700 font-medium py-1 group ${subTextColor} hover:${isTransparent ? "text-white" : "text-terracotta"}`}
+                    className={`relative flex items-center gap-1 text-[11px] tracking-[0.25em] uppercase transition-colors duration-700 font-medium py-1 group ${subTextColor} hover:text-terracotta`}
                   >
                     {item.label}
-                    <span className={`absolute -bottom-1 left-0 w-full h-[1px] transition-transform duration-700 origin-left ${isTransparent ? "bg-white" : "bg-ink"} ${activeDropdown === item.label ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
+                    <span className={`absolute -bottom-1 left-0 w-full h-[1px] transition-transform duration-700 origin-left bg-ink ${activeDropdown === item.label ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
                   </a>
                 </div>
               ))}
@@ -183,12 +202,11 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Sub-navigation Row (Swipeable menu under header) */}
-        <div 
-          className={`lg:hidden w-full overflow-x-auto scrollbar-none py-2.5 px-4 flex items-center gap-4 transition-all duration-700 border-t border-b ${
-            isTransparent 
-              ? "bg-transparent border-[#C49A5D]/20 text-white/80" 
+        <div
+          className={`lg:hidden w-full overflow-x-auto scrollbar-none py-2.5 px-4 flex items-center gap-4 transition-all duration-700 border-t border-b ${isTransparent
+              ? "bg-transparent border-[#C49A5D]/20 text-white/80"
               : "bg-warm-white/95 border-[#C49A5D]/30 text-ink/80"
-          }`}
+            }`}
         >
           <div className="flex items-center gap-3.5 mx-auto whitespace-nowrap text-[10px] tracking-[0.2em] uppercase font-medium">
             {NAV.map((item, index) => (

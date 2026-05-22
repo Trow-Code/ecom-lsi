@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Pinyon+Script&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -16,9 +17,9 @@
   --color-clay-pastel: #F2EBE4;
   --color-gold-pastel: #F5F0E1;
 
-  --font-display: var(--font-forum);
-  --font-sans: var(--font-urbanist);
-  --font-signature: var(--font-pinyon);
+  --font-display: "Forum", serif;
+  --font-sans: "Urbanist", sans-serif;
+  --font-signature: "Pinyon Script", cursive;
 
   --tracking-wider: 0.15em;
   --tracking-widest: 0.3em;
