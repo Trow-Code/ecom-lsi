@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 export default function EditorialBanner() {
   return (
-    <section className="py-24 sm:py-32 lg:py-40 bg-white">
+    <section className="py-16 sm:py-20 lg:py-24 bg-white">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           
           {/* Left: Atmospheric Image with Floating Text */}
           <motion.div 
@@ -16,7 +16,7 @@ export default function EditorialBanner() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative aspect-[4/5] lg:aspect-[3/4] bg-sand/10 overflow-hidden group cursor-pointer"
+            className="relative aspect-[4/5] lg:aspect-auto lg:h-full min-h-[400px] bg-sand/10 overflow-hidden group cursor-pointer"
           >
             <Image 
               src="/hero_living_room_1_1777654627821.png" 
@@ -37,7 +37,7 @@ export default function EditorialBanner() {
           </motion.div>
 
           {/* Right: Editorial Story & Smaller Featured Item */}
-          <div className="flex flex-col gap-16 lg:gap-24">
+          <div className="flex flex-col gap-10 lg:gap-14">
             
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -46,10 +46,6 @@ export default function EditorialBanner() {
               viewport={{ once: true }}
               className="max-w-md"
             >
-              <div className="flex items-center gap-4 mb-8">
-                <span className="w-8 h-[1px] bg-terracotta" />
-                <p className="text-[10px] tracking-[0.3em] uppercase text-terracotta font-medium">The Makers</p>
-              </div>
               <h3 className="font-display text-[32px] sm:text-[40px] text-ink font-light leading-tight mb-8">
                 Design Masters 2026: The Art of Living
               </h3>
@@ -67,20 +63,21 @@ export default function EditorialBanner() {
             </motion.div>
 
             {/* Smaller Featured Inset */}
+            {/* Minimal Editorial Highlight */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="relative aspect-[16/9] bg-warm-white border border-sand/30 p-8 flex items-center justify-between group overflow-hidden cursor-pointer"
+              className="flex items-center justify-between group cursor-pointer pt-8 border-t border-sand/40 mt-4"
             >
-              <div className="relative z-10 max-w-[60%]">
-                <span className="text-[9px] tracking-[0.25em] uppercase text-terracotta mb-2 block">ELLE Nominated</span>
-                <h4 className="font-display text-2xl text-ink font-light mb-2">The Puffer Series</h4>
-                <p className="text-[10px] text-muted tracking-wide uppercase">Comfort elevated to high art.</p>
+              <div className="max-w-[70%]">
+                <span className="text-[8px] tracking-[0.3em] uppercase text-terracotta mb-2 block font-semibold">ELLE Nominated</span>
+                <h4 className="font-display text-2xl text-ink font-light mb-1.5">The Puffer Series</h4>
+                <p className="text-xs text-charcoal/60 font-light leading-relaxed">Comfort elevated to high art.</p>
               </div>
               
-              <div className="relative w-1/3 h-full scale-110 group-hover:scale-125 transition-transform duration-1000">
+              <div className="relative w-1/4 h-24 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out">
                 <Image 
                   src="/hero_furniture_detail_1777654659357.png" 
                   alt="Featured Item" 
@@ -88,9 +85,6 @@ export default function EditorialBanner() {
                   className="object-contain"
                 />
               </div>
-              
-              {/* Background accent */}
-              <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-sand/10 rounded-full blur-3xl group-hover:bg-terracotta/10 transition-colors duration-1000" />
             </motion.div>
 
           </div>

@@ -1,54 +1,94 @@
 "use client";
-import { Home, Search, ShoppingBag, User, Sofa } from "lucide-react";
+import { useState } from "react";
+import { Home, LayoutGrid, ShoppingBag, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function MobileNav() {
-  const { count, setCartOpen, setSearchOpen } = useCart();
+  const { count, setCartOpen } = useCart();
+  const [activeTab, setActiveTab] = useState("home");
+
+  const handleTabClick = (id: string, onClick?: () => void) => {
+    setActiveTab(id);
+    if (onClick) onClick();
+  };
 
   const ITEMS = [
-    { id: 'home', icon: Home, label: "Home", active: true },
-    { id: 'shop', icon: Sofa, label: "Shop", active: false },
-    { id: 'search', icon: Search, label: "Search", active: false, onClick: () => setSearchOpen(true) },
-    { id: 'account', icon: User, label: "Profile", active: false },
-    { id: 'cart', icon: ShoppingBag, label: "Cart", active: false, onClick: () => setCartOpen(true), hasBadge: true },
+    { 
+      id: 'home', 
+      icon: Home, 
+      label: "Home", 
+      onClick: () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
+    { 
+      id: 'categories', 
+      icon: LayoutGrid, 
+      label: "Categories", 
+      onClick: () => {
+        const el = document.getElementById("categories-section");
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    },
+    { 
+      id: 'cart', 
+      icon: ShoppingBag, 
+      label: "Cart", 
+      onClick: () => setCartOpen(true),
+      hasBadge: true 
+    },
+    { 
+      id: 'account', 
+      icon: User, 
+      label: "Account",
+      onClick: () => {
+        // Fallback or navigate
+      }
+    },
   ];
 
   return (
-    <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[60] lg:hidden w-[95%] max-w-[420px]">
-      <div className="bg-white/90 backdrop-blur-3xl border border-black/[0.03] shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[3rem] p-2 flex items-center justify-between">
+    <nav className="fixed bottom-0 left-0 right-0 z-[60] lg:hidden bg-warm-white border-t border-sand/40 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] pt-1 pb-[calc(8px+env(safe-area-inset-bottom))]">
+      <div className="flex items-center justify-around h-14 max-w-md mx-auto px-4">
         
-        {ITEMS.map((item) => (
-          <button
-            key={item.id}
-            onClick={item.onClick}
-            className={`relative flex items-center justify-center transition-all duration-500 rounded-full h-12 ${
-              item.active ? "bg-ink text-white px-5 gap-3" : "w-12 text-ink/30"
-            }`}
-          >
-            <item.icon size={20} strokeWidth={item.active ? 1.5 : 1.2} />
-            
-            <AnimatePresence>
-              {item.active && (
-                <motion.span 
-                  initial={{ opacity: 0, width: 0 }}
-                  animate={{ opacity: 1, width: "auto" }}
-                  exit={{ opacity: 0, width: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-[11px] font-medium whitespace-nowrap overflow-hidden"
-                >
-                  {item.label}
-                </motion.span>
-              )}
-            </AnimatePresence>
-
-            {item.hasBadge && count > 0 && !item.active && (
-              <span className="absolute top-1 right-1 w-4 h-4 bg-terracotta text-white text-[8px] rounded-full flex items-center justify-center font-bold">
-                {count}
+        {ITEMS.map((item) => {
+          const isActive = activeTab === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleTabClick(item.id, item.onClick)}
+              className="relative flex flex-col items-center justify-center flex-1 h-full py-1 text-ink focus:outline-none"
+            >
+              <item.icon 
+                size={18} 
+                className={`transition-colors duration-300 ${isActive ? "text-ink" : "text-ink/40"}`} 
+                strokeWidth={isActive ? 2 : 1.5} 
+                fill={isActive && item.id !== 'categories' ? "currentColor" : "none"}
+              />
+              
+              <span className={`text-[9px] tracking-[0.1em] uppercase mt-1 font-medium transition-colors duration-300 ${
+                isActive ? "text-ink font-semibold" : "text-ink/45"
+              }`}>
+                {item.label}
               </span>
-            )}
-          </button>
-        ))}
+
+              {item.hasBadge && count > 0 && (
+                <span className="absolute top-1 right-6 sm:right-8 w-4 h-4 bg-terracotta text-white text-[8px] rounded-full flex items-center justify-center font-bold">
+                  {count}
+                </span>
+              )}
+
+              {isActive && (
+                <motion.div 
+                  layoutId="activeMobileTabUnderline"
+                  className="absolute bottom-0 w-1.5 h-1.5 bg-ink rounded-full"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </button>
+          );
+        })}
 
       </div>
     </nav>

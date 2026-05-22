@@ -34,13 +34,12 @@ export default function FeaturedProducts() {
     : PRODUCTS.filter(p => p.category === activeTab).slice(0, 3);
 
   return (
-    <section className="pt-12 pb-24 sm:pt-16 sm:pb-32 lg:pt-20 lg:pb-40 bg-warm-white">
+    <section className="pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-14 lg:pb-24 bg-warm-white">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
         
         {/* Editorial Header & Filters - Same Row */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 lg:mb-24">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 lg:mb-14">
           <div className="max-w-xl">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-terracotta font-medium mb-4">The Selection</p>
             <h2 className="font-display text-[45px] sm:text-[55px] lg:text-[72px] font-light text-ink leading-[1.1] tracking-tight">
               New Arrivals
             </h2>
@@ -116,7 +115,7 @@ function ProductCard({ id, name, price, originalPrice, category, image }: typeof
       <div className="flex flex-col flex-1 px-1">
         <p className="text-[9px] tracking-[0.25em] uppercase text-muted mb-3">{category}</p>
         
-        <h3 className="font-display text-xl lg:text-[22px] text-ink font-light leading-tight mb-4 group-hover:text-terracotta transition-colors duration-400">
+        <h3 className="font-sans text-lg lg:text-[20px] text-ink font-medium leading-tight mb-3 group-hover:text-terracotta transition-colors duration-400">
           {name}
         </h3>
         

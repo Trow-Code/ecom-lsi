@@ -21,10 +21,10 @@ export default function Footer() {
   return (
     <footer className="bg-warm-white border-t border-sand">
       {/* Main footer */}
-      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 mb-12 sm:mb-16">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-24 lg:pb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 sm:gap-10 mb-12 sm:mb-16">
           {/* Brand col */}
-          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
+          <div className="col-span-2 md:col-span-4 lg:col-span-2">
             <p className="font-display text-2xl sm:text-3xl font-light mb-3 sm:mb-4">
               <span className="font-semibold">LivingSpace</span>
             </p>

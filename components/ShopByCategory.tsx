@@ -1,80 +1,81 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 const CATEGORIES = [
-  { id: 1, name: "Sofas", image: "/hero_living_room_1_1777654627821.png", count: "12 Designs" },
-  { id: 2, name: "Chairs", image: "/hero_modern_dining.png", count: "24 Designs" },
-  { id: 3, name: "Tables", image: "/hero_furniture_detail_1777654659357.png", count: "18 Designs" },
-  { id: 4, name: "Lighting", image: "/hero_furniture_detail_1777654659357.png", count: "32 Designs" },
-  { id: 5, name: "Decor", image: "/hero_living_room_1_1777654627821.png", count: "45 Designs" },
+  { id: 1, name: "Sofas", image: "/hero_living_room_1_1777654627821.png", count: "12 Designs", from: "₹1,68,000" },
+  { id: 2, name: "Chairs", image: "/hero_modern_dining.png", count: "24 Designs", from: "₹28,000" },
+  { id: 3, name: "Tables", image: "/hero_furniture_detail_1777654659357.png", count: "18 Designs", from: "₹56,000" },
+  { id: 4, name: "Lighting", image: "/hero_furniture_detail_1777654659357.png", count: "32 Designs", from: "₹8,500" },
+  { id: 5, name: "Decor", image: "/hero_living_room_1_1777654627821.png", count: "45 Designs", from: "₹2,400" },
 ];
 
 export default function ShopByCategory() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section className="py-24 sm:py-32 lg:py-40 bg-white overflow-hidden">
+    <section id="categories-section" className="py-16 sm:py-20 lg:py-24 bg-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
-        
+
         {/* Sophisticated Editorial Header */}
-        <div className="flex flex-col items-start mb-12 lg:mb-16">
-          <p className="text-[10px] tracking-[0.4em] uppercase text-terracotta font-medium mb-4">Objects of Intention</p>
+        <div className="flex flex-col items-start mb-8 lg:mb-12">
           <h2 className="font-display text-[40px] sm:text-[50px] lg:text-[64px] font-light text-ink leading-tight tracking-tight">
             The Essential Edit
           </h2>
         </div>
 
-        {/* Modern Expanding Accordion Grid */}
-        <div className="flex flex-col lg:flex-row h-[500px] lg:h-[600px] gap-4">
-          {CATEGORIES.map((cat) => (
-            <motion.div
-              key={cat.id}
-              onMouseEnter={() => setHoveredId(cat.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              animate={{
-                flex: hoveredId === cat.id ? 2.5 : 1,
-              }}
-              transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-              className="relative overflow-hidden cursor-pointer bg-sand/10"
-            >
-              <Image 
-                src={cat.image} 
-                alt={cat.name} 
-                fill 
-                className="object-cover transition-transform duration-[2s]"
-                style={{ transform: hoveredId === cat.id ? 'scale(1.1)' : 'scale(1)' }}
-              />
-              
-              {/* Dark Overlay with transition */}
-              <div 
-                className={`absolute inset-0 bg-black/30 transition-opacity duration-700 ${hoveredId === cat.id ? 'opacity-20' : 'opacity-40'}`} 
-              />
+        {/* Staggered Editorial Row Layout */}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 xl:gap-8 items-start">
+          {CATEGORIES.map((cat, idx) => {
+            // Editorial heights & offsets for desktop
+            const cardHeightStyles = [
+              "lg:h-[480px] lg:mt-0",   // Sofas
+              "lg:h-[420px] lg:mt-12",  // Chairs
+              "lg:h-[500px] lg:mt-0",   // Tables
+              "lg:h-[440px] lg:mt-8",   // Lighting
+              "lg:h-[470px] lg:mt-4",   // Decor
+            ][idx];
 
-              {/* Vertical Label */}
-              <div className="absolute inset-0 flex items-center justify-center lg:justify-start lg:items-end p-8">
-                <div className={`flex flex-col transition-all duration-700 ${hoveredId === cat.id ? 'lg:translate-y-0 opacity-100' : 'lg:translate-y-4 opacity-90'}`}>
-                  <span className={`text-[9px] tracking-[0.3em] uppercase text-white/60 mb-2 transition-opacity duration-500 ${hoveredId === cat.id ? 'opacity-100' : 'opacity-0'}`}>
-                    {cat.count}
-                  </span>
-                  <h3 className="font-display text-3xl lg:text-5xl text-white font-light tracking-tight">
-                    {cat.name}
-                  </h3>
+            return (
+              <div
+                key={cat.id}
+                className="group flex flex-col cursor-pointer"
+              >
+                {/* Image Frame with grayscale and hover scale */}
+                <div className={`relative w-full aspect-[4/5] lg:aspect-auto overflow-hidden bg-ink ${cardHeightStyles}`}>
+                  <Image
+                    src={cat.image}
+                    alt={cat.name}
+                    fill
+                    className="object-cover filter grayscale brightness-[0.75] contrast-[1.05] group-hover:grayscale-0 group-hover:brightness-[0.9] group-hover:scale-105 transition-all duration-[1.2s] ease-in-out"
+                  />
+
+                  {/* Subtle vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Content Under Image */}
+                <div className="mt-4 flex flex-col items-start w-full px-1">
+                  <div className="flex items-baseline justify-between w-full">
+                    <h3 className="font-sans text-base lg:text-lg text-ink font-semibold tracking-wide group-hover:text-terracotta transition-colors duration-300">
+                      {cat.name}
+                    </h3>
+                    <span className="text-[9px] tracking-wider text-[#C49A5D] font-medium">
+                      0{idx + 1}
+                    </span>
+                  </div>
+
+                  {/* Subtle expanding line divider */}
+                  <div className="w-full h-[1px] bg-sand/30 my-2 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-terracotta transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
+                  </div>
+
+                  <div className="flex items-center justify-between w-full text-[9px] tracking-[0.15em] uppercase text-muted">
+                    <span>{cat.count}</span>
+                    <span className="text-terracotta font-medium">From {cat.from}</span>
+                  </div>
                 </div>
               </div>
-
-              {/* Minimalist Line Indicator */}
-              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 overflow-hidden">
-                <motion.div 
-                  initial={{ x: "-100%" }}
-                  animate={{ x: hoveredId === cat.id ? "0%" : "-100%" }}
-                  transition={{ duration: 0.8 }}
-                  className="w-full h-full bg-terracotta"
-                />
-              </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

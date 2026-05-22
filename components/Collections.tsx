@@ -8,30 +8,30 @@ const COLLECTIONS = [
   { 
     id: 1, 
     name: "The Village Collection", 
-    subtitle: "Earthy & Handcrafted", 
+    from: "₹3,400", 
     tag: "New Season",
     image: "/hero_living_room_1_1777654627821.png"
   },
   { 
     id: 2, 
     name: "Manhattan Series", 
-    subtitle: "Urban & Refined", 
+    from: "₹56,000", 
     tag: "Bestseller",
     image: "/hero_furniture_detail_1777654659357.png"
   },
   { 
     id: 3, 
     name: "Modern Dining Edit", 
-    subtitle: "Minimalist Textures", 
+    from: "₹89,000", 
     tag: "Exclusive",
     image: "/hero_modern_dining.png"
   },
   { 
     id: 4, 
     name: "Isle of Greece", 
-    subtitle: "Coastal & Breezy", 
+    from: "₹15,400", 
     tag: "Limited",
-    image: "/hero_living_room_1_1777654627821.png" // Fallback to existing image
+    image: "/hero_living_room_1_1777654627821.png"
   }
 ];
 
@@ -53,13 +53,12 @@ export default function Collections() {
   ];
 
   return (
-    <section id="collections" className="pt-24 pb-8 lg:pt-32 lg:pb-12 bg-warm-white">
+    <section id="collections" className="pt-16 pb-8 lg:pt-24 lg:pb-12 bg-warm-white">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
         
         {/* Section Header */}
-        <div className="flex items-end justify-between mb-8 sm:mb-12">
+        <div className="flex items-end justify-between mb-6 sm:mb-10">
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-terracotta mb-3">Curated for You</p>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-ink">Our Collections</h2>
           </div>
           <a href="#" className="hidden lg:flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-ink font-medium hover:text-terracotta transition-colors group">
@@ -109,7 +108,7 @@ export default function Collections() {
   );
 }
 
-function Card({ name, subtitle, tag, image, large = false }: { name: string; subtitle: string; tag: string; image: string; large?: boolean }) {
+function Card({ name, from, tag, image, large = false }: { name: string; from: string; tag: string; image: string; large?: boolean }) {
   return (
     <div className="group relative overflow-hidden cursor-pointer w-full h-full bg-sand/20">
       <AnimatePresence initial={false}>
@@ -131,14 +130,14 @@ function Card({ name, subtitle, tag, image, large = false }: { name: string; sub
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80" />
 
           {/* Tag */}
-          <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm text-[9px] tracking-[0.2em] uppercase px-3 py-1.5 text-ink font-medium">
+          <div className="absolute top-6 left-6 bg-ink/90 border border-white/10 text-white text-[9px] tracking-[0.2em] uppercase px-3.5 py-1.5 font-medium">
             {tag}
           </div>
 
           {/* Content */}
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex items-end justify-between">
             <div>
-              <p className="text-[10px] tracking-[0.25em] uppercase text-cream/80 mb-2">{subtitle}</p>
+              <p className="text-[9px] tracking-[0.2em] uppercase text-[#C49A5D] mb-2 font-medium">FROM {from}</p>
               <h3 className={`font-display text-cream font-light leading-snug ${large ? 'text-3xl lg:text-4xl' : 'text-2xl lg:text-3xl'}`}>
                 {name}
               </h3>

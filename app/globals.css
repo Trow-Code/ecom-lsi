@@ -16,9 +16,9 @@
   --color-clay-pastel: #F2EBE4;
   --color-gold-pastel: #F5F0E1;
 
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
-  --font-signature: var(--font-signature);
+  --font-display: var(--font-forum);
+  --font-sans: var(--font-urbanist);
+  --font-signature: var(--font-pinyon);
 
   --tracking-wider: 0.15em;
   --tracking-widest: 0.3em;

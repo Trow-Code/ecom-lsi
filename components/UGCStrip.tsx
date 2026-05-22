@@ -13,16 +13,12 @@ const UGC_ITEMS = [
 
 export default function UGCStrip() {
   return (
-    <section className="py-24 sm:py-32 lg:py-40 bg-white overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
         
         {/* Modern Instagram Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-16 lg:mb-24">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 lg:mb-14">
           <div className="max-w-xl">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="w-8 h-[1px] bg-terracotta" />
-              <p className="text-[10px] tracking-[0.4em] uppercase text-terracotta font-medium">The Social Edit</p>
-            </div>
             <h2 className="font-display text-[45px] sm:text-[55px] lg:text-[72px] font-light text-ink leading-tight tracking-tight">
               Living with LivingSpace
             </h2>

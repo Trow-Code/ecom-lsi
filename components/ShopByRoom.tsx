@@ -1,27 +1,26 @@
 "use client";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const ROOMS = [
-  { id: 1, name: "Living Spaces", image: "/hero_living_room_1_1777654627821.png", tag: "Warm & Inviting" },
-  { id: 2, name: "Dining Areas", image: "/hero_modern_dining.png", tag: "Modern & Refined" },
-  { id: 3, name: "Bedroom Suites", image: "/hero_furniture_detail_1777654659357.png", tag: "Quiet & Calm" },
-  { id: 4, name: "Private Office", image: "/hero_living_room_1_1777654627821.png", tag: "Focused & Clean" },
+  { id: 1, name: "Living Spaces", image: "/hero_living_room_1_1777654627821.png", from: "₹89,000" },
+  { id: 2, name: "Dining Areas", image: "/hero_modern_dining.png", from: "₹56,000" },
+  { id: 3, name: "Bedroom Suites", image: "/hero_furniture_detail_1777654659357.png", from: "₹1,20,000" },
+  { id: 4, name: "Private Office", image: "/hero_living_room_1_1777654627821.png", from: "₹45,000" },
 ];
 
 export default function ShopByRoom() {
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
+
   return (
-    <section className="py-24 sm:py-32 lg:py-40 bg-warm-white">
+    <section className="py-16 sm:py-20 lg:py-24 bg-warm-white">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
         
         {/* Modern Editorial Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-16 lg:mb-24">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 lg:mb-14">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="w-8 h-[1px] bg-terracotta" />
-              <p className="text-[10px] tracking-[0.4em] uppercase text-terracotta font-medium">Curated Spaces</p>
-            </div>
             <h2 className="font-display text-[45px] sm:text-[55px] lg:text-[72px] font-light text-ink leading-[1.1] tracking-tight">
               Designed Around You
             </h2>
@@ -33,39 +32,57 @@ export default function ShopByRoom() {
           </div>
         </div>
 
-        {/* Premium Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {ROOMS.map((room, index) => (
+        {/* Premium Expanding Accordion Grid */}
+        <div className="flex flex-col lg:flex-row h-[500px] lg:h-[600px] gap-4">
+          {ROOMS.map((room) => (
             <motion.div
               key={room.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer"
+              onMouseEnter={() => setHoveredId(room.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              animate={{
+                flex: hoveredId === room.id ? 2.5 : 1,
+              }}
+              transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+              className="relative overflow-hidden cursor-pointer bg-sand/10"
             >
-              <div className="relative aspect-[3/4] overflow-hidden bg-sand/10 mb-6">
-                <Image 
-                  src={room.image} 
-                  alt={room.name} 
-                  fill 
-                  className="object-cover transition-transform duration-[2s] group-hover:scale-110"
-                />
-                
-                {/* Subtle Overlay Reveal */}
-                <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-700" />
+              <Image 
+                src={room.image} 
+                alt={room.name} 
+                fill 
+                className="object-cover transition-transform duration-[2s]"
+                style={{ transform: hoveredId === room.id ? 'scale(1.1)' : 'scale(1)' }}
+              />
+              
+              {/* Bottom Gradient for Text Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-700" />
+
+              {/* Label */}
+              <div className="absolute inset-0 flex items-end p-6 sm:p-8">
+                <div className="flex flex-col">
+                  <span className="text-[9px] tracking-[0.25em] uppercase text-[#C49A5D] mb-1 sm:mb-2 font-semibold">
+                    Starting from {room.from}
+                  </span>
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-[38px] text-white font-light tracking-tight">
+                    {room.name}
+                  </h3>
+                </div>
                 
                 {/* Floating Explore Button */}
-                <div className="absolute bottom-6 right-6 w-12 h-12 rounded-full bg-white text-ink flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  <ArrowRight size={18} strokeWidth={1.5} />
+                <div className={`absolute bottom-6 right-6 sm:bottom-8 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-ink flex items-center justify-center transition-all duration-500 ${
+                  hoveredId === room.id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                }`}>
+                  <ArrowRight className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
                 </div>
               </div>
 
-              <div className="flex flex-col">
-                <p className="text-[9px] tracking-[0.2em] uppercase text-terracotta font-medium mb-2">{room.tag}</p>
-                <h3 className="font-display text-2xl lg:text-[28px] text-ink font-light group-hover:text-terracotta transition-colors duration-400">
-                  {room.name}
-                </h3>
+              {/* Minimalist Underline Indicator */}
+              <div className="absolute bottom-0 left-0 w-full h-[3px] bg-white/10 overflow-hidden">
+                <motion.div 
+                  initial={{ x: "-100%" }}
+                  animate={{ x: hoveredId === room.id ? "0%" : "-100%" }}
+                  transition={{ duration: 0.8 }}
+                  className="w-full h-full bg-[#C49A5D]"
+                />
               </div>
             </motion.div>
           ))}

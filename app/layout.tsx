@@ -6,22 +6,23 @@ import SearchOverlay from "@/components/SearchOverlay";
 import Toast from "@/components/Toast";
 import BackToTop from "@/components/BackToTop";
 import MobileNav from "@/components/MobileNav";
-import { Bodoni_Moda, Urbanist, Pinyon_Script } from "next/font/google";
+import { Forum, Urbanist, Pinyon_Script } from "next/font/google";
 
-const bodoni = Bodoni_Moda({
+const forum = Forum({
   subsets: ["latin"],
-  variable: "--font-display",
+  weight: "400",
+  variable: "--font-forum",
 });
 
 const urbanist = Urbanist({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-urbanist",
 });
 
 const pinyon = Pinyon_Script({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-signature",
+  variable: "--font-pinyon",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bodoni.variable} ${urbanist.variable} ${pinyon.variable}`}>
+    <html lang="en" className={`${forum.variable} ${urbanist.variable} ${pinyon.variable}`}>
       <body className="antialiased">
         <CartProvider>
           {children}

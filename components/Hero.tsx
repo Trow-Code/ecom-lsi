@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ShoppingBag, Plus, ArrowRight } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { Plus, ArrowRight } from "lucide-react";
 
 const PRODUCTS = [
   {
@@ -43,7 +42,6 @@ const PRODUCTS = [
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const { addToCart } = useCart();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -53,18 +51,18 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen bg-ink overflow-hidden flex flex-col justify-end">
-      
-      {/* Cinematic Image Frame */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 2, ease: [0.4, 0, 0.2, 1] }}
-          className="absolute inset-0 z-0"
-        >
+    <section className="relative w-full aspect-[4/5] sm:aspect-[4/3] lg:aspect-video max-h-[calc(100vh-140px)] bg-ink overflow-hidden flex flex-col">
+
+          {/* Cinematic Image Frame */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 2, ease: [0.4, 0, 0.2, 1] }}
+              className="absolute inset-0 z-0"
+            >
           <Image
             src={PRODUCTS[current].image}
             alt={PRODUCTS[current].name}
@@ -77,25 +75,7 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* "Poster" Layout Content */}
-      <div className="relative z-10 w-full h-full flex flex-col justify-between p-6 sm:p-12 lg:p-20 pointer-events-none">
-        
-        {/* Top Row: Series Info */}
-        <div className="flex justify-between items-start">
-          <motion.div
-            key={`cat-${current}`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col gap-2"
-          >
-            <span className="text-[10px] tracking-[0.5em] uppercase text-terracotta font-bold">LivingSpace</span>
-            <span className="text-[9px] tracking-[0.3em] uppercase text-white/40">{PRODUCTS[current].category}</span>
-          </motion.div>
-          
-          <div className="hidden lg:flex flex-col items-end gap-2">
-            <span className="text-[9px] tracking-[0.4em] uppercase text-white/30 [writing-mode:vertical-lr]">Exhibition 2026</span>
-            <div className="w-[1px] h-20 bg-white/10" />
-          </div>
-        </div>
+      <div className="relative z-10 flex-1 w-full flex items-end sm:items-center justify-start p-6 pb-24 sm:p-12 lg:p-20 pointer-events-none">
 
         {/* Center: Interactive Hotspots (Pointer Events On) */}
         <div className="absolute inset-0 pointer-events-none">
@@ -116,7 +96,7 @@ export default function Hero() {
                     <Plus size={12} />
                   </button>
                   <div className="absolute left-full ml-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 whitespace-nowrap">
-                    <div className="bg-white/95 backdrop-blur-xl px-4 py-2 rounded-sm border-l-2 border-terracotta">
+                    <div className="bg-white/95 backdrop-blur-xl px-4 py-2 rounded-sm border-l-2 border-[#C49A5D]">
                       <p className="text-[9px] tracking-[0.2em] uppercase text-ink font-bold">{spot.label}</p>
                     </div>
                   </div>
@@ -126,56 +106,69 @@ export default function Hero() {
           </AnimatePresence>
         </div>
 
-        {/* Bottom Row: Massive Poster Typography */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 pointer-events-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h1 className="font-display text-[70px] sm:text-[100px] lg:text-[160px] font-light text-white leading-[0.85] tracking-tighter mb-4">
-                {PRODUCTS[current].name}
-              </h1>
-              <div className="flex items-center gap-8">
-                <p className="text-2xl sm:text-4xl text-white/30 font-light italic">{PRODUCTS[current].price}</p>
-                <div className="h-[1px] w-24 bg-terracotta" />
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* CTA Group */}
-          <div className="flex flex-col gap-6 items-start lg:items-end">
-            <button 
-              onClick={() => addToCart({ id: PRODUCTS[current].id, name: PRODUCTS[current].name, price: Number(PRODUCTS[current].price.replace(/[^0-9.-]+/g,"")), image: PRODUCTS[current].image })}
-              className="group relative h-16 w-16 sm:h-20 sm:w-20 bg-white rounded-full flex items-center justify-center text-ink overflow-hidden transition-all duration-700 hover:w-64"
-            >
-              <div className="absolute left-0 w-full flex items-center justify-center group-hover:justify-start group-hover:pl-8 transition-all duration-700">
-                <ShoppingBag size={20} />
-              </div>
-              <span className="opacity-0 group-hover:opacity-100 whitespace-nowrap text-[11px] tracking-[0.3em] uppercase font-bold ml-12 transition-all duration-700">
-                Acquire Piece
-              </span>
-              <div className="absolute inset-0 bg-terracotta translate-y-full group-hover:translate-y-0 -z-10 transition-transform duration-700" />
-            </button>
-            
-            {/* Visual Index */}
-            <div className="flex gap-4">
-              {PRODUCTS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`h-1 transition-all duration-700 ${current === i ? "w-16 bg-terracotta" : "w-6 bg-white/20 hover:bg-white/40"}`}
+        {/* Left Block: Figma Design "Bring Trend Culture Home" - Vertically Centered */}
+        <div className="flex flex-col items-start pointer-events-auto max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl pb-10 sm:pb-0">
+          <h1 className="font-display text-[45px] sm:text-[72px] lg:text-[92px] font-normal text-white leading-[0.9] tracking-tight mb-6">
+            Bring Trend <br />
+            <span className="relative inline-block font-signature text-[#C49A5D] text-[65px] sm:text-[95px] lg:text-[120px] font-normal leading-none py-1 select-none pr-8">
+              Culture
+              {/* Hand-drawn SVG arrow underline */}
+              <svg
+                className="absolute -bottom-1 left-0 w-[115%] h-6 text-[#C49A5D]"
+                viewBox="0 0 200 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <motion.path
+                  d="M10 12 C 50 18, 120 18, 180 8 C 185 8, 192 6, 190 6"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, ease: "easeOut", delay: 0.8 }}
                 />
-              ))}
-            </div>
+                <motion.path
+                  d="M175 4 C 180 6, 186 7, 190 6 C 184 8, 178 11, 172 13"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 2.0 }}
+                />
+              </svg>
+            </span> <br />
+            Home
+          </h1>
+
+          <p className="text-sm sm:text-base text-white/80 font-light leading-relaxed max-w-md mb-0 sm:mb-8">
+            Discover stylish, modern furniture crafted to elevate your living space with comfort and class.
+          </p>
+
+          <a
+            href="#collections"
+            className="hidden sm:inline-flex items-center gap-3.5 px-9 py-4 bg-[#C49A5D] hover:bg-[#b58c50] text-white text-[10px] tracking-[0.3em] uppercase font-bold transition-all duration-500 rounded-sm shadow-lg hover:shadow-xl translate-y-0 hover:-translate-y-0.5"
+          >
+            Shop Now <ArrowRight size={14} />
+          </a>
+        </div>
+
+        {/* Right Block: Visual Index (Absolute Positioned Bottom Right) */}
+        <div className="absolute bottom-10 sm:bottom-12 lg:bottom-20 right-6 sm:right-12 lg:right-20 flex flex-col items-start lg:items-end gap-6 pointer-events-auto">
+          <div className="flex gap-3">
+            {PRODUCTS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-1.5 transition-all duration-700 rounded-full ${current === i ? "w-12 bg-[#C49A5D]" : "w-4 bg-white/20 hover:bg-white/40"}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
 
       </div>
-
     </section>
   );
 }

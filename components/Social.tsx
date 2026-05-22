@@ -29,7 +29,6 @@ export default function Social() {
         
         {/* Modern Minimal Header */}
         <div className="flex flex-col items-center text-center mb-20 lg:mb-32">
-          <p className="text-[10px] tracking-[0.5em] uppercase text-muted font-medium mb-6">Customer Voice</p>
           <h2 className="font-display text-[45px] sm:text-[55px] lg:text-[72px] font-light text-ink leading-tight tracking-tight">
             The Living Experience
           </h2>
