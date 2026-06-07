@@ -12,7 +12,7 @@ const CATEGORIES = [
 export default function ShopByCategory() {
   return (
     <section id="categories" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
 
         {/* Sophisticated Editorial Header */}
         <div className="flex flex-col items-start mb-10 lg:mb-14">

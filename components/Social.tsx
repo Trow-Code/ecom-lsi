@@ -25,7 +25,7 @@ const STORIES = [
 export default function Social() {
   return (
     <section className="py-24 sm:py-32 lg:py-40 bg-warm-white">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20">
         
         {/* Modern Minimal Header */}
         <div className="flex flex-col items-center text-center mb-20 lg:mb-32">

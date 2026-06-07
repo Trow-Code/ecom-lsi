@@ -21,7 +21,7 @@ export default function ConsultationCTA() {
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-ink/80 to-ink" />
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
           <motion.div

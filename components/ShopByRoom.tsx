@@ -16,7 +16,7 @@ export default function ShopByRoom() {
 
   return (
     <section id="rooms" className="py-20 sm:py-24 bg-[#FAF8F5]">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Modern Editorial Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">

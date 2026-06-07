@@ -11,7 +11,7 @@ const BEST_SELLERS = [
     price: 185000,
     originalPrice: 220000,
     category: "Living",
-    image: "/SOFA.jpg"
+    image: "/sofa.jpg"
   },
   {
     id: "bs-2",
@@ -19,7 +19,7 @@ const BEST_SELLERS = [
     price: 32000,
     originalPrice: 40000,
     category: "Furniture",
-    image: "/SIDE TABLE(2).jpg"
+    image: "/side_table_2.jpg"
   },
   {
     id: "bs-3",
@@ -27,7 +27,7 @@ const BEST_SELLERS = [
     price: 45000,
     originalPrice: 58000,
     category: "Furniture",
-    image: "/TEA POY(1).JPG"
+    image: "/tea_poy_1.jpg"
   },
   {
     id: "bs-4",
@@ -35,7 +35,7 @@ const BEST_SELLERS = [
     price: 68000,
     originalPrice: 85000,
     category: "Furniture",
-    image: "/CONSOLE TABLE 1.jpg"
+    image: "/console_table_1.jpg"
   }
 ];
 
@@ -53,7 +53,7 @@ export default function BestSellers() {
 
   return (
     <section id="best-sellers" className="bg-[#FAF8F5] py-20 sm:py-24 border-t border-sand/35">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">

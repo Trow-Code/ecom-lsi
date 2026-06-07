@@ -36,7 +36,7 @@ const COLLECTIONS = [
 export default function Collections() {
   return (
     <section id="collections" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Section Header */}
         <div className="flex items-end justify-between mb-10 sm:mb-14">
@@ -78,7 +78,7 @@ export default function Collections() {
         </div>
 
         {/* Mobile / Tablet Horizontal Scroll */}
-        <div className="lg:hidden flex gap-5 overflow-x-auto pb-6 -mx-5 px-5 sm:-mx-8 sm:px-8 scrollbar-none">
+        <div className="lg:hidden flex gap-5 overflow-x-auto pb-6 -mx-4 px-4 sm:-mx-12 sm:px-12 scrollbar-none">
           {COLLECTIONS.map((c) => (
             <div key={c.id} className="flex-shrink-0 w-[290px] sm:w-[340px] h-[420px] relative">
               <Card {...c} />

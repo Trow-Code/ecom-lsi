@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function FullWidthBanner() {
   return (
     <section className="bg-[#FAF8F5] py-8 sm:py-12">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[500px] overflow-hidden border border-sand/25">
 
           {/* Background Image - Styled with vertical offset to frame the sofa/table crop perfectly */}

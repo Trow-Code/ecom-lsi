@@ -67,54 +67,40 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // Determine colors based on scroll state - transparent at top, solid on scroll
-  const isTransparent = !scrolled && !menuOpen && !activeDropdown;
-  const textColor = isTransparent ? "text-white" : "text-ink";
-  const subTextColor = isTransparent ? "text-white/80" : "text-charcoal";
-  const iconColor = isTransparent ? "text-white/90 hover:text-white" : "text-charcoal hover:text-terracotta";
+  // Determine colors: solid white background and clear text colors
+  const isTransparent = false;
+  const textColor = "text-ink";
+  const subTextColor = "text-charcoal";
+  const iconColor = "text-charcoal hover:text-terracotta";
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 flex flex-col transition-all duration-700">
+    <div className="sticky top-0 left-0 w-full z-50 flex flex-col bg-white">
 
       <header
-        className={`w-full transition-all duration-700 ${isTransparent
-          ? "bg-transparent shadow-none backdrop-blur-none border-b border-transparent"
-          : "bg-warm-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(196,185,171,0.5)]"
-          }`}
+        className="w-full bg-white shadow-[0_1px_0_rgba(196,185,171,0.35)]"
         onMouseLeave={() => setActiveDropdown(null)}
       >
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
 
           {/* Main Row */}
-          <div className={`flex items-center justify-between h-16 lg:h-20 relative border-b transition-colors duration-700 ${isTransparent ? "border-white/10" : "border-sand/10"}`}>
+          <div className="flex items-center justify-between h-16 lg:h-20 relative border-b border-sand/10">
 
-            {/* Left: Brand Logo & Name (Inline Icon + Vertically Stacked Text) */}
+            {/* Left: Brand Logo */}
             <div className="flex items-center justify-start flex-1 lg:flex-none">
-              <a href="#" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+              <a href="#" className="flex items-center hover:opacity-90 transition-opacity">
                 <Image
-                  src="/livingspace.svg"
-                  alt="LivingSpace Logo Icon"
-                  width={40}
-                  height={40}
-                  className="h-[40px] w-auto object-contain"
+                  src="/lsi_lg.webp"
+                  alt="Logo"
+                  // width={178}
+                  width={150}
+                  // height={32}
+                  height={30}
+
+                  className="h-6 sm:h-8 w-auto object-contain"
+                  // className="h-6 sm:h-9 w-auto object-contain"
+
                   priority
                 />
-                <div className="flex flex-col items-start pt-1">
-                  <Image
-                    src="/LSI_logo.svg"
-                    alt="LivingSpace Wordmark"
-                    width={140}
-                    height={28}
-                    className={`h-[23px] w-auto object-contain transition-all duration-700 ${isTransparent ? "invert brightness-200" : ""}`}
-                    priority
-                  />
-                  <span
-                    className="text-[16px] font-normal text-[#C49A5D] leading-none -mt-0.5 pl-9 transform -rotate-[3deg] origin-left select-none pointer-events-none"
-                    style={{ fontFamily: "'Pinyon Script', 'Snell Roundhand', cursive" }}
-                  >
-                    Interior
-                  </span>
-                </div>
               </a>
             </div>
 
@@ -134,11 +120,11 @@ export default function Navbar() {
                   >
                     <span>{item.label}</span>
                     {item.mega && (
-                      <svg 
-                        className={`w-2.5 h-2.5 opacity-55 mt-0.5 transition-transform duration-500 ${activeDropdown === item.label ? "rotate-180" : ""}`} 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor" 
+                      <svg
+                        className={`w-2.5 h-2.5 opacity-55 mt-0.5 transition-transform duration-500 ${activeDropdown === item.label ? "rotate-180" : ""}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                         strokeWidth="2.5"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -197,10 +183,10 @@ export default function Navbar() {
 
         {/* Mega Menu Dropdown */}
         <div className={`absolute top-full left-0 w-full bg-warm-white border-t border-sand/30 shadow-2xl transition-all duration-700 origin-top overflow-hidden ${activeDropdown ? "opacity-100 max-h-[600px] py-16" : "opacity-0 max-h-0 py-0 pointer-events-none"}`}>
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
             {activeDropdown && NAV.find(n => n.label === activeDropdown)?.mega && (
               <div className="grid grid-cols-12 gap-12 max-w-6xl mx-auto text-ink">
-                
+
                 {/* Left Side: Large category title of selected item */}
                 <div className="col-span-4 flex flex-col justify-start border-r border-sand/30 pr-12">
                   <span className="text-[9px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-2">
@@ -210,8 +196,8 @@ export default function Navbar() {
                     {activeDropdown}
                   </h2>
                   <p className="text-xs text-charcoal/60 font-light mt-4 leading-relaxed max-w-[220px]">
-                    {activeDropdown === "Categories" 
-                      ? "Meticulously crafted items, organized by form and function to elevate everyday spaces." 
+                    {activeDropdown === "Categories"
+                      ? "Meticulously crafted items, organized by form and function to elevate everyday spaces."
                       : "Thoughtfully curated collections, inspired by international art, architecture, and design."}
                   </p>
                 </div>
@@ -259,22 +245,21 @@ export default function Navbar() {
                       className="w-full flex items-center justify-between py-4.5 text-[14px] tracking-[0.05em] font-medium text-ink text-left focus:outline-none"
                     >
                       <span>{item.label}</span>
-                      <svg 
-                        className={`w-3 h-3 opacity-60 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor" 
+                      <svg
+                        className={`w-3 h-3 opacity-60 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                         strokeWidth="2.5"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
-                    
+
                     {/* Collapsible Panel */}
-                    <div 
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isExpanded ? "max-h-[600px] pb-6 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
-                      }`}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[600px] pb-6 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                        }`}
                     >
                       <div className="pl-4 space-y-6 pt-2 border-l border-sand/35 ml-1.5">
                         {item.mega?.map((column: any) => (
@@ -285,7 +270,7 @@ export default function Navbar() {
                             <ul className="space-y-3">
                               {column.links.map((link: string) => (
                                 <li key={link}>
-                                  <a 
+                                  <a
                                     href={item.href}
                                     onClick={() => {
                                       setMenuOpen(false);
