@@ -8,7 +8,7 @@ export default function ConsultationCTA() {
   const [format, setFormat] = useState("In-Studio");
 
   return (
-    <section id="consultation" className="py-16 sm:py-20 lg:py-24 bg-ink relative overflow-hidden">
+    <section id="consultation" className="py-24 lg:py-28 bg-ink relative overflow-hidden">
       
       {/* Background Architectural Accent */}
       <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block opacity-40">
@@ -45,8 +45,8 @@ export default function ConsultationCTA() {
                 { label: "No Commitment", sub: "Pure Inspiration" },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col gap-2">
-                  <p className="text-[11px] tracking-[0.2em] uppercase text-white font-medium">{item.label}</p>
-                  <p className="text-[9px] tracking-[0.1em] uppercase text-white/40">{item.sub}</p>
+                  <p className="font-sans text-[11px] tracking-widest uppercase text-white font-medium">{item.label}</p>
+                  <p className="font-sans text-[9px] tracking-widest uppercase text-white/40">{item.sub}</p>
                 </div>
               ))}
             </div>
@@ -61,7 +61,7 @@ export default function ConsultationCTA() {
           >
             <form onSubmit={(e) => e.preventDefault()} className="space-y-8">
               <div className="space-y-2">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-medium">Design Appointment</p>
+                <p className="font-sans text-[11px] tracking-widest uppercase text-[#C49A5D] font-semibold">Design Appointment</p>
                 <h3 className="font-display text-3xl sm:text-4xl text-white font-light tracking-tight">Book a Consultation</h3>
               </div>
 
@@ -83,14 +83,14 @@ export default function ConsultationCTA() {
                 
                 {/* Session Type Selectors */}
                 <div className="space-y-3 pt-2">
-                  <label className="text-[9px] tracking-[0.25em] uppercase text-white/40 block">Preferred Format</label>
+                  <label className="font-sans text-[9px] tracking-widest uppercase text-white/40 block">Preferred Format</label>
                   <div className="flex flex-wrap gap-2.5">
                     {["In-Studio", "Virtual Visit", "Phone Call"].map((type) => (
                       <button
                         key={type}
                         type="button"
                         onClick={() => setFormat(type)}
-                        className={`px-4 py-2 border text-[9px] tracking-widest uppercase transition-all duration-300 ${
+                        className={`px-4 py-2 border font-sans text-[9px] tracking-widest uppercase transition-all duration-300 ${
                           format === type 
                             ? "border-white bg-white text-ink" 
                             : "border-white/10 text-white/70 hover:border-white/40 hover:text-white"
@@ -106,14 +106,14 @@ export default function ConsultationCTA() {
               <div className="pt-2 space-y-4">
                 <button 
                   type="submit" 
-                  className="w-full py-4 bg-white text-ink text-[11px] tracking-[0.3em] uppercase font-medium hover:bg-terracotta hover:text-white transition-all duration-500 flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-white text-ink font-sans text-[11px] tracking-widest uppercase font-medium hover:bg-terracotta hover:text-white transition-all duration-500 flex items-center justify-center gap-2"
                 >
                   Submit Request <ArrowRight size={14} />
                 </button>
                 
-                <div className="flex items-center justify-center gap-2 text-[9px] tracking-[0.2em] uppercase text-white/30">
+                <div className="flex items-center justify-center gap-2 font-sans text-[9px] tracking-widest uppercase text-white/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-terracotta animate-pulse" />
-                  Slots available for May
+                  Limited slots this week
                 </div>
               </div>
             </form>

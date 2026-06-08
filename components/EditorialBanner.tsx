@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function EditorialBanner() {
   return (
-    <section className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
+    <section className="py-24 lg:py-28 bg-[#FAF8F5] border-t border-sand/35">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
@@ -30,7 +30,7 @@ export default function EditorialBanner() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
             
             <div className="absolute bottom-10 left-10 right-10">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-white/70 mb-4 font-semibold">Behind the Design</p>
+              <p className="font-sans text-[11px] tracking-widest uppercase text-white/70 mb-4 font-semibold">Behind the Design</p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-white font-light leading-tight">
                 Crafted with <br /> <em className="not-italic text-[#C49A5D] italic font-medium">intention.</em>
               </h2>
@@ -47,16 +47,16 @@ export default function EditorialBanner() {
               viewport={{ once: true }}
               className="max-w-md"
             >
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-3">
+              <p className="font-sans text-[11px] tracking-widest uppercase text-[#C49A5D] font-semibold mb-3">
                 Craft & Legacy
               </p>
               <h3 className="font-display text-3xl sm:text-4xl text-ink font-light leading-tight mb-6">
                 Design Masters 2026: The Art of Living
               </h3>
-              <p className="text-xs sm:text-sm text-charcoal/70 font-light leading-relaxed tracking-wide mb-8">
+              <p className="font-sans text-xs sm:text-sm text-muted font-light leading-relaxed tracking-wide mb-8">
                 At LivingSpace, we believe furniture should be more than just functional objects. They are the silent witnesses to our lives, crafted by master artisans who pour heart and soul into every curve and joint.
               </p>
-              <a href="#" className="group inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase text-ink font-bold">
+              <a href="/about" className="group inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase text-ink font-bold">
                 <span className="relative pb-1">
                   Our Story
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-ink/10" />

@@ -44,10 +44,10 @@ export default function TrustBadges() {
 
                 {/* Content */}
                 <div className="flex flex-col text-left">
-                  <h4 className="text-[10px] sm:text-[11px] font-semibold text-ink tracking-[0.2em] uppercase">
+                  <h4 className="font-sans text-[10px] sm:text-[11px] font-semibold text-ink tracking-[0.2em] uppercase">
                     {badge.title}
                   </h4>
-                  <p className="text-[11px] text-charcoal/65 font-light mt-0.5 whitespace-nowrap">
+                  <p className="font-sans text-[11px] text-muted font-light mt-0.5 whitespace-nowrap">
                     {badge.description}
                   </p>
                 </div>

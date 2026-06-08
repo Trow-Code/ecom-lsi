@@ -35,20 +35,20 @@ const COLLECTIONS = [
 
 export default function Collections() {
   return (
-    <section id="collections" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
+    <section id="collections" className="py-24 lg:py-28 bg-[#FAF8F5] border-t border-sand/35">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Section Header */}
         <div className="flex items-end justify-between mb-10 sm:mb-14">
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-3">
+            <p className="font-sans text-[11px] tracking-widest uppercase text-[#C49A5D] font-semibold mb-3">
               Seasonal Curations
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-ink tracking-wide">
               Our Collections
             </h2>
           </div>
-          <a href="#" className="hidden lg:flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-ink font-semibold hover:text-[#C49A5D] transition-colors group">
+          <a href="/collections" className="hidden lg:flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase text-ink font-semibold hover:text-[#C49A5D] transition-colors group">
             View Directory 
             <span className="w-8 h-8 rounded-full border border-sand flex items-center justify-center group-hover:border-[#C49A5D] group-hover:bg-[#C49A5D] group-hover:text-white transition-all duration-300">
               <ArrowRight size={12} strokeWidth={1.5} />
@@ -92,8 +92,9 @@ export default function Collections() {
 }
 
 function Card({ name, from, tag, image, large = false }: { name: string; from: string; tag: string; image: string; large?: boolean }) {
+  const slug = name.toLowerCase().replace("the ", "").split(" ")[0]; // village, manhattan, incurve, isle
   return (
-    <div className="group relative overflow-hidden cursor-pointer w-full h-full bg-sand/15 border border-sand/20">
+    <a href={`/collections/${slug}`} className="group relative overflow-hidden cursor-pointer w-full h-full bg-sand/15 border border-sand/20 block">
       
       {/* Background Image with Zoom */}
       <div className="absolute inset-0 z-0">
@@ -116,7 +117,7 @@ function Card({ name, from, tag, image, large = false }: { name: string; from: s
       {/* Content */}
       <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex items-end justify-between z-10">
         <div>
-          <p className="text-[9px] tracking-[0.2em] uppercase text-[#C49A5D] mb-2 font-semibold">FROM {from}</p>
+          <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-[#C49A5D] mb-2 font-semibold">FROM {from}</p>
           <h3 className={`font-display text-white font-light leading-snug ${large ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}`}>
             {name}
           </h3>
@@ -126,6 +127,6 @@ function Card({ name, from, tag, image, large = false }: { name: string; from: s
         </div>
       </div>
 
-    </div>
+    </a>
   );
 }

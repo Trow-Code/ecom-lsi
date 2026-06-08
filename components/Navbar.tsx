@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { Search, Heart, ShoppingBag, Menu, X, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
+import AnnouncementBar from "./AnnouncementBar";
 
 const NAV = [
-  { label: "Rooms", href: "#rooms" },
-  { label: "Best Sellers", href: "#best-sellers" },
+  { label: "Rooms", href: "/categories" },
+  { label: "Best Sellers", href: "/products" },
   {
     label: "Categories",
-    href: "#categories",
+    href: "/categories",
     mega: [
       {
         title: "Seating",
@@ -27,7 +28,7 @@ const NAV = [
   },
   {
     label: "Collections",
-    href: "#collections",
+    href: "/collections",
     mega: [
       {
         title: "Latest Edition",
@@ -43,9 +44,9 @@ const NAV = [
       }
     ]
   },
-  { label: "Featured", href: "#featured" },
-  { label: "Offers", href: "#offers" },
-  { label: "Consultation", href: "#consultation" }
+  { label: "Featured", href: "/products" },
+  { label: "Offers", href: "/offers" },
+  { label: "Consultation", href: "/consultation" }
 ];
 
 export default function Navbar() {
@@ -75,6 +76,7 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-0 left-0 w-full z-50 flex flex-col bg-white">
+      <AnnouncementBar />
 
       <header
         className="w-full bg-white shadow-[0_1px_0_rgba(196,185,171,0.35)]"
@@ -87,7 +89,7 @@ export default function Navbar() {
 
             {/* Left: Brand Logo */}
             <div className="flex items-center justify-start flex-1 lg:flex-none">
-              <a href="#" className="flex items-center hover:opacity-90 transition-opacity">
+              <a href="/" className="flex items-center hover:opacity-90 transition-opacity">
                 <Image
                   src="/lsi_lg.webp"
                   alt="Logo"
@@ -159,12 +161,16 @@ export default function Navbar() {
                 )}
               </button>
 
-              <button className={`w-8 h-8 flex items-center justify-center transition-all duration-700 ${iconColor}`} aria-label="Favorites">
+              <a 
+                href="/wishlist" 
+                className={`w-8 h-8 flex items-center justify-center transition-all duration-700 ${iconColor}`} 
+                aria-label="Favorites"
+              >
                 <Heart size={18} strokeWidth={1.5} />
-              </button>
+              </a>
 
               <a
-                href="#"
+                href="/login"
                 className={`hidden sm:inline-block text-[11px] tracking-[0.2em] uppercase font-medium transition-colors duration-700 ${textColor} ml-1`}
               >
                 Login
@@ -189,13 +195,13 @@ export default function Navbar() {
 
                 {/* Left Side: Large category title of selected item */}
                 <div className="col-span-4 flex flex-col justify-start border-r border-sand/30 pr-12">
-                  <span className="text-[9px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-2">
-                    Spatial Curation
+                  <span className="font-sans text-[11px] tracking-widest uppercase text-[#C49A5D] font-semibold mb-2">
+                    Explore by Room
                   </span>
                   <h2 className="font-display text-4xl font-light tracking-wide text-ink capitalize">
                     {activeDropdown}
                   </h2>
-                  <p className="text-xs text-charcoal/60 font-light mt-4 leading-relaxed max-w-[220px]">
+                  <p className="font-sans text-xs text-muted font-light mt-4 leading-relaxed max-w-[220px]">
                     {activeDropdown === "Categories"
                       ? "Meticulously crafted items, organized by form and function to elevate everyday spaces."
                       : "Thoughtfully curated collections, inspired by international art, architecture, and design."}
@@ -206,17 +212,21 @@ export default function Navbar() {
                 <div className="col-span-8 grid grid-cols-3 gap-8">
                   {NAV.find(n => n.label === activeDropdown)?.mega?.map((column: any) => (
                     <div key={column.title} className="space-y-6">
-                      <h3 className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted">
+                      <h3 className="font-sans text-[10px] font-semibold tracking-[0.2em] uppercase text-muted">
                         {column.title}
                       </h3>
                       <ul className="space-y-3.5">
-                        {column.links.map((link: string) => (
-                          <li key={link}>
-                            <a href="#" className="text-[13px] tracking-wide hover:text-terracotta transition-colors block font-light">
-                              {link}
-                            </a>
-                          </li>
-                        ))}
+                        {column.links.map((link: string) => {
+                          const slug = link.toLowerCase().replace(/&/g, "and").replace(/\s+/g, "-");
+                          const route = activeDropdown === "Categories" ? `/categories/${slug}` : `/collections/${slug}`;
+                          return (
+                            <li key={link}>
+                              <a href={route} className="font-sans text-[13px] tracking-wide hover:text-[#C49A5D] transition-colors block font-light">
+                                {link}
+                              </a>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   ))}
@@ -268,20 +278,24 @@ export default function Navbar() {
                               {column.title}
                             </h4>
                             <ul className="space-y-3">
-                              {column.links.map((link: string) => (
-                                <li key={link}>
-                                  <a
-                                    href={item.href}
-                                    onClick={() => {
-                                      setMenuOpen(false);
-                                      setExpandedMobileItem(null);
-                                    }}
-                                    className="text-[13px] tracking-wide text-charcoal hover:text-terracotta transition-colors block font-light"
-                                  >
-                                    {link}
-                                  </a>
-                                </li>
-                              ))}
+                              {column.links.map((link: string) => {
+                                const slug = link.toLowerCase().replace(/&/g, "and").replace(/\s+/g, "-");
+                                const route = item.label === "Categories" ? `/categories/${slug}` : `/collections/${slug}`;
+                                return (
+                                  <li key={link}>
+                                    <a
+                                      href={route}
+                                      onClick={() => {
+                                        setMenuOpen(false);
+                                        setExpandedMobileItem(null);
+                                      }}
+                                      className="font-sans text-[13px] tracking-wide text-charcoal hover:text-[#C49A5D] transition-colors block font-light"
+                                    >
+                                      {link}
+                                    </a>
+                                  </li>
+                                );
+                              })}
                             </ul>
                           </div>
                         ))}
@@ -301,9 +315,9 @@ export default function Navbar() {
             );
           })}
           <div className="pt-8 space-y-5">
-            <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Account</a>
-            <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Partner Program</a>
-            <a href="#" className="block text-[13px] tracking-[0.05em] text-muted font-medium">Free Design Consultation</a>
+            <a href="/account" className="font-sans block text-[13px] tracking-[0.05em] text-muted font-medium">Account</a>
+            <a href="/partner-program" className="font-sans block text-[13px] tracking-[0.05em] text-muted font-medium">Partner Program</a>
+            <a href="/consultation" className="font-sans block text-[13px] tracking-[0.05em] text-muted font-medium">Free Design Consultation</a>
           </div>
         </div>
       </div>

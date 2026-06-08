@@ -13,13 +13,13 @@ const UGC_ITEMS = [
 
 export default function UGCStrip() {
   return (
-    <section className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35 overflow-hidden">
+    <section className="py-24 lg:py-28 bg-[#FAF8F5] border-t border-sand/35 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
         
         {/* Modern Instagram Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 sm:mb-16">
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-3">
+            <p className="font-sans text-[11px] tracking-widest uppercase text-[#C49A5D] font-semibold mb-3">
               Social Curation
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-ink tracking-wide">
@@ -27,11 +27,13 @@ export default function UGCStrip() {
             </h2>
           </div>
           <div className="flex flex-col items-start lg:items-end gap-4">
-            <p className="text-xs sm:text-sm text-charcoal/65 font-light max-w-xs lg:text-right">
+            <p className="font-sans text-xs sm:text-sm text-muted font-light max-w-xs lg:text-right">
               Join our community of design lovers. Share your space with us for a chance to be featured.
             </p>
             <a 
-              href="#" 
+              href="https://instagram.com/livingspace" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-ink font-bold"
             >
               <span className="relative pb-1">

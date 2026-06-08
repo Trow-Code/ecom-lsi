@@ -1,16 +1,22 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Collections from "@/components/Collections";
-import FeaturedProducts from "@/components/FeaturedProducts";
+import TrustBar from "@/components/TrustBar";
+import ThreeTabCarousel from "@/components/ThreeTabCarousel";
 import ShopByCategory from "@/components/ShopByCategory";
-import EditorialBanner from "@/components/EditorialBanner";
 import ShopByRoom from "@/components/ShopByRoom";
-import UGCStrip from "@/components/UGCStrip";
-import ConsultationCTA from "@/components/ConsultationCTA";
-import OfferBanners from "@/components/OfferBanners";
-import FullWidthBanner from "@/components/FullWidthBanner";
+import EditorialHero from "@/components/EditorialHero";
+import Collections from "@/components/Collections";
 import BestSellers from "@/components/BestSellers";
+import FeaturedProducts from "@/components/FeaturedProducts";
+import EditorialBanner from "@/components/EditorialBanner";
+import PressBar from "@/components/PressBar";
+import Testimonials from "@/components/Testimonials";
+import OfferBanners from "@/components/OfferBanners";
+import ConsultationCTA from "@/components/ConsultationCTA";
+import UGCStrip from "@/components/UGCStrip";
+import SEOTextBlock from "@/components/SEOTextBlock";
+import TrustBadges from "@/components/TrustBadges";
+import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,17 +24,45 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <TrustBar />
+      <ThreeTabCarousel />
       <ShopByRoom />
-      <BestSellers />
-      <ShopByCategory />
-      <FullWidthBanner />
+      
+      {/* Editorial Banner 1 - Bedroom Edit */}
+      <EditorialHero
+        label="The Bedroom Edit"
+        headline="Where Rest Becomes Ritual"
+        ctaText="Explore Bedroom"
+        ctaHref="/categories/bedroom"
+        imageSrc="/room_bedroom_premium.png"
+      />
+
       <Collections />
+      <ShopByCategory />
+      <BestSellers />
+
+      {/* Editorial Banner 2 - Outdoor Living */}
+      <EditorialHero
+        label="Outdoor Living"
+        headline="Leisure Beyond Walls"
+        ctaText="Shop Outdoor"
+        ctaHref="/categories/outdoor"
+        imageSrc="/coll_isle_of_greece_coastal_1777654870630.png"
+      />
+
       <FeaturedProducts />
-      <OfferBanners />
       <EditorialBanner />
-      <UGCStrip />
+      <PressBar />
+      <Testimonials />
+      <OfferBanners />
       <ConsultationCTA />
+      <UGCStrip />
+      <SEOTextBlock />
+      
+      {/* TRUST BADGES + TICKER rendered consecutively */}
+      <TrustBadges />
       <Marquee />
+
       <Footer />
     </main>
   );

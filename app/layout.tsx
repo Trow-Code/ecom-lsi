@@ -6,6 +6,7 @@ import SearchOverlay from "@/components/SearchOverlay";
 import Toast from "@/components/Toast";
 import BackToTop from "@/components/BackToTop";
 import MobileNav from "@/components/MobileNav";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "LivingSpace — Ultra Luxury Living Spaces",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SearchOverlay />
           <Toast />
           <BackToTop />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>

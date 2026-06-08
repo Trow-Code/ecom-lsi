@@ -12,7 +12,7 @@ const OFFERS = [
     desc: "Enjoy up to 30% off select design classics from our signature collections.",
     code: "ARCHIVE30",
     cta: "Explore Archive",
-    href: "#collections",
+    href: "/collections/archive",
     img: "/offer_archive_premium.png",
     tag: "Limited Selection"
   },
@@ -23,7 +23,7 @@ const OFFERS = [
     desc: "Receive a complimentary custom wood finishing treatment on dining orders above ₹1,50,000.",
     code: "ATELIERFINISH",
     cta: "Book Consultation",
-    href: "#consultation",
+    href: "/consultation",
     img: "/offer_atelier_premium.png",
     tag: "Seasonal Privilege"
   }
@@ -34,7 +34,7 @@ const cardVariants = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" as const }
   }
 };
 
@@ -55,7 +55,7 @@ export default function OfferBanners() {
         
         {/* Header */}
         <div className="max-w-2xl mb-16 sm:mb-20">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-3">
+          <p className="font-sans text-[11px] tracking-widest uppercase text-[#C49A5D] font-semibold mb-3">
             Bespoke Benefits
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-ink tracking-wide">
@@ -129,7 +129,7 @@ export default function OfferBanners() {
                       {offer.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-charcoal/70 font-light leading-relaxed tracking-wide mb-6 sm:mb-8">
+                    <p className="font-sans text-xs sm:text-sm text-muted font-light leading-relaxed tracking-wide mb-6 sm:mb-8">
                       {offer.desc}
                     </p>
 
