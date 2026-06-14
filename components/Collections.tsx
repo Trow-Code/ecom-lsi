@@ -6,7 +6,7 @@ const COLLECTIONS = [
   { 
     id: 1, 
     name: "The Village Collection", 
-    from: "₹3,400", 
+    from: "₹18,500", 
     tag: "New Season",
     image: "/coll_village_collection_1777654787769.png"
   },

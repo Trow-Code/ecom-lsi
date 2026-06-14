@@ -51,7 +51,7 @@ export default function EditorialBanner() {
                 Craft & Legacy
               </p>
               <h3 className="font-display text-3xl sm:text-4xl text-ink font-light leading-tight mb-6">
-                Design Masters 2026: The Art of Living
+                The artisans behind every piece
               </h3>
               <p className="font-sans text-xs sm:text-sm text-muted font-light leading-relaxed tracking-wide mb-8">
                 At LivingSpace, we believe furniture should be more than just functional objects. They are the silent witnesses to our lives, crafted by master artisans who pour heart and soul into every curve and joint.

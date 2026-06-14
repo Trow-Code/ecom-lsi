@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+// HANDOVER NOTE: The UGC items currently use product placeholder images as fake Instagram posts.
+// Be sure to replace these with high-quality lifestyle user-generated photos before final client delivery.
 const UGC_ITEMS = [
   { id: 1, image: "/coll_village_collection_1777654787769.png", handle: "@priya.home" },
   { id: 2, image: "/prod_miller_cane_sofa_1777655124777.png", handle: "@designedbyarjun" },

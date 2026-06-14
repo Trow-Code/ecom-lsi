@@ -35,7 +35,7 @@ export default function EditorialHero({
         <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent" />
         
         {/* Content bottom-left */}
-        <div className="absolute inset-0 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24 flex items-end justify-start pb-12 sm:pb-16 lg:pb-20">
+        <div className="absolute inset-0 max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24 flex items-end justify-start pb-12 sm:pb-16 lg:pb-20">
           <div className="max-w-2xl text-left space-y-4 sm:space-y-6">
             <div className="space-y-2">
               <span className="font-sans text-[11px] tracking-widest text-[#C49A5D] uppercase font-semibold">

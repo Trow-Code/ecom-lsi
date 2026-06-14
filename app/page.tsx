@@ -11,6 +11,7 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import EditorialBanner from "@/components/EditorialBanner";
 import PressBar from "@/components/PressBar";
 import Testimonials from "@/components/Testimonials";
+import EMICallout from "@/components/EMICallout";
 import OfferBanners from "@/components/OfferBanners";
 import ConsultationCTA from "@/components/ConsultationCTA";
 import UGCStrip from "@/components/UGCStrip";
@@ -54,6 +55,7 @@ export default function Home() {
       <EditorialBanner />
       <PressBar />
       <Testimonials />
+      <EMICallout />
       <OfferBanners />
       <ConsultationCTA />
       <UGCStrip />

@@ -8,7 +8,7 @@ const BANNERS = [
   {
     id: 1,
     desktopImage: "/bann2.webp",
-    mobileImage: "/bann2.webp" // You can replace this with your 4:5 mobile banner image when ready
+    mobileImage: "/bann2_m.webp" // You can replace this with your 4:5 mobile banner image when ready
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const BANNERS = [
   {
     id: 3,
     desktopImage: "/bann5.webp",
-    mobileImage: "/bann5.webp"
+    mobileImage: "/bann5_m.webp"
   },
 ];
 

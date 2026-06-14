@@ -12,12 +12,12 @@ const CATEGORIES = [
 export default function ShopByCategory() {
   return (
     <section id="categories" className="py-20 sm:py-24 bg-[#FAF8F5] border-t border-sand/35">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 xl:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-12 lg:px-20 xl:px-24">
 
         {/* Sophisticated Editorial Header */}
         <div className="flex flex-col items-start mb-10 lg:mb-14">
           <p className="text-[10px] tracking-[0.3em] uppercase text-[#C49A5D] font-semibold mb-3">
-            Product Taxonomy
+            Shop by Category
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-ink tracking-wide">
             The Essential Edit
