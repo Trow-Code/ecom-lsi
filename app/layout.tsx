@@ -9,7 +9,7 @@ import MobileNav from "@/components/MobileNav";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
-  title: "LivingSpace — Ultra Luxury Living Spaces",
+  title: "House Untold — Shape Your Living Space",
   description: "Curated furniture and décor for spaces that feel like you. Crafted with intention, designed for life.",
 };
 

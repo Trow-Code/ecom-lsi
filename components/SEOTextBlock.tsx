@@ -13,7 +13,7 @@ export default function SEOTextBlock() {
         
         <div className="font-sans text-[13px] leading-[1.9] text-muted font-light text-justify sm:text-center max-w-2xl mx-auto">
           <p>
-            LivingSpace is India's destination for ultra-luxury furniture. Our collections span living room, dining, bedroom and outdoor — each handcrafted by master artisans across Jaipur, Kochi, Ahmedabad and Bangalore using premium materials sourced globally.{" "}
+            House Untold is India's destination for ultra-luxury furniture. Our collections span living room, dining, bedroom and outdoor — each handcrafted by master artisans across Jaipur, Kochi, Ahmedabad and Bangalore using premium materials sourced globally.{" "}
             {!expanded && "..."}
           </p>
           

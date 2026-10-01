@@ -3,7 +3,7 @@ import React from "react";
 
 export default function WhatsAppButton() {
   const phoneNumber = "919000000000"; // Placeholder premium contact
-  const message = encodeURIComponent("Hello LivingSpace, I would like to schedule a design consultation.");
+  const message = encodeURIComponent("Hello House Untold, I would like to schedule a design consultation.");
   const url = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (

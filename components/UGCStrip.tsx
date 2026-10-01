@@ -25,7 +25,7 @@ export default function UGCStrip() {
               Social Curation
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-light text-ink tracking-wide">
-              Living with LivingSpace
+              Living with House Untold
             </h2>
           </div>
           <div className="flex flex-col items-start lg:items-end gap-4">

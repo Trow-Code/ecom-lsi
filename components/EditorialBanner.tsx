@@ -54,7 +54,7 @@ export default function EditorialBanner() {
                 The artisans behind every piece
               </h3>
               <p className="font-sans text-xs sm:text-sm text-muted font-light leading-relaxed tracking-wide mb-8">
-                At LivingSpace, we believe furniture should be more than just functional objects. They are the silent witnesses to our lives, crafted by master artisans who pour heart and soul into every curve and joint.
+                At House Untold, we believe furniture should be more than just functional objects. They are the silent witnesses to our lives, crafted by master artisans who pour heart and soul into every curve and joint.
               </p>
               <a href="/about" className="group inline-flex items-center gap-4 text-[10px] tracking-[0.3em] uppercase text-ink font-bold">
                 <span className="relative pb-1">

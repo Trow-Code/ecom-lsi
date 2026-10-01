@@ -15,7 +15,7 @@ const STORIES = [
     collection: "Miller Lounge Series" 
   },
   { 
-    quote: "LivingSpace transformed our living room in one purchase. The design consultation made it effortless.", 
+    quote: "House Untold transformed our living room in one purchase. The design consultation made it effortless.", 
     name: "Kavitha Nair", 
     location: "Kochi", 
     collection: "Copenhagen Curves" 

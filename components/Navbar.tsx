@@ -91,15 +91,11 @@ export default function Navbar() {
             <div className="flex items-center justify-start flex-1 lg:flex-none">
               <a href="/" className="flex items-center hover:opacity-90 transition-opacity">
                 <Image
-                  src="/lsi_lg.webp"
-                  alt="Logo"
-                  // width={178}
-                  width={150}
-                  // height={32}
-                  height={30}
-
-                  className="h-6 sm:h-8 w-auto object-contain"
-                  // className="h-6 sm:h-9 w-auto object-contain"
+                  src="/house_untold_logo.webp"
+                  alt="House Untold — shape your living space"
+                  width={828}
+                  height={526}
+                  className="h-11 lg:h-14 w-auto object-contain"
 
                   priority
                 />

@@ -14,7 +14,7 @@ const reviews = [
     product: "Nicholas Lounge Chair",
   },
   {
-    quote: "We compared with five other brands. LivingSpace was the only one that felt truly handcrafted.",
+    quote: "We compared with five other brands. House Untold was the only one that felt truly handcrafted.",
     name: "Preethi Krishnan",
     location: "Chennai",
     product: "Teak Dining Set",

@@ -1,6 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 const FOOTER_LINKS = {
   "About Us": ["Why Us", "Testimonials", "Awards & Recognition", "Care & Maintenance", "Blog", "Contact Us"],
@@ -59,9 +60,13 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 sm:gap-10 mb-12 sm:mb-16">
           {/* Brand col */}
           <div className="col-span-2 md:col-span-4 lg:col-span-2">
-            <p className="font-display text-2xl sm:text-3xl font-light mb-3 sm:mb-4">
-              <span className="font-semibold">LivingSpace</span>
-            </p>
+            <Image
+              src="/house_untold_logo.webp"
+              alt="House Untold — shape your living space"
+              width={828}
+              height={526}
+              className="h-16 sm:h-20 w-auto object-contain mb-4 sm:mb-5"
+            />
             <p className="font-sans text-sm text-muted leading-relaxed max-w-xs font-light mb-6 sm:mb-7">
               Premium furniture and décor crafted for the spaces where life unfolds.
             </p>
@@ -127,7 +132,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-sand pt-6 sm:pt-8 flex flex-col lg:flex-row items-center justify-between gap-6 font-light">
           <p className="font-sans text-[11px] text-muted whitespace-nowrap">
-            © 2026 LivingSpace. All rights reserved.
+            © 2026 House Untold. All rights reserved.
           </p>
           
           <div className="flex flex-wrap items-center justify-center gap-6 text-[10px] text-muted">
